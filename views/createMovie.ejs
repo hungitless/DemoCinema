@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <title><%= title %></title>
+    <link rel="shortcut icon" type="image/png" href="images/logo.png"/>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  </head>
+  <body ng-controller="myController">
+    <header>
+      <div class='container'>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="logo">
+                <p>CINEMA</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <!-- <div class="button-menu">
+                  <button type="button" class="btn btn-primary">Tạo Phim</button>
+                  <button type="button" class="btn btn-primary">Tài Khoản</button>
+                  <button type="button" class="btn btn-primary">Đăng Xuất</button>
+              </div> -->
+            </div>
+        </div>
+      </div>
+    </header>
+
+    <content>
+      <div class="container">
+        <div class="create">
+          <div class="title">
+            <p>TẠO PHIM MỚI</p>
+          </div>
+          <div class="content-create-movie">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="show-logo">
+                  <img src="/images/logo.png" alt="Hinh Demo">
+                </div>
+                <div class="button-file">
+                    <input type="file" name="myFile">
+                </div>
+              </div>
+              <div class="col-md-8">
+                  <div class="form-group">
+                    <label>Tên bộ phim</label>
+                    <input type="text" class="form-control" id="usr" placeholder="Tên phim" ng-model="data.tenPhim">
+                    <label for="sel1">Thể loại phim</label>
+                    <select class="form-control" id="sel1" ng-model="data.theLoai">
+                        <option selected="selected">Chọn thể loại</option>
+                      <option>Hành Động</option>
+                      <option>Tình Cảm</option>
+                      <option>Hoạt Hình</option>
+                      <option>Viễn Tưởng</option>
+                      <option>Chiến Tranh</option>
+                    </select>
+                    <label>Thời gian phát hành</label>
+                    <br>
+                    <input type="text" class="chossedate" id="chossedate">
+                    <br>
+                    <label ng-model="data.moTa">Mô tả phim</label>
+                    <textarea class="form-control" rows="5" id="comment">Mô tả phim...</textarea>
+                    <div class="button-submit" ng-click="createMovie()">
+                        <button type="button" class="btn btn-primary">Tạo Phim</button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </content>
+    <footer>
+      <div class="license">
+        <p>Copyright © Cinema Website 2019</p>
+      </div>
+    </footer>
+  </body>
+</html>
+<script>
+  $(document).ready( function() {
+    $( function() {
+      $( "#chossedate" ).datepicker();
+    } );
+    var now = new Date();
+ 
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+    var today = now.getFullYear()+"-"+(day)+"-"+(month) ;
+    $('#chossedate').val(today);
+});
+</script>
+<script src="javascripts/app.js"></script>
