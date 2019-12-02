@@ -1,8 +1,76 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: Arial, Helvetica, sans-serif;
 }
-
 a {
   color: #00B7FF;
+}
+header{
+  margin-bottom: 20px;
+  background-color: #000;
+}
+footer{
+  margin-top: 20px;
+  background-color: #000;
+}
+p{
+  color: #fff;
+  font-size: 60px;
+  font-weight: 500;
+}
+.btn{
+  margin-top: 15px;
+  margin-right: 10px;
+  font-size: 30px !important;
+}
+.license p{
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  padding: 10px;
+}
+.create{
+  background-color: lightgrey;
+}
+.create p{
+  color: #000;
+  text-align: center;
+  font-size: 40px;
+}
+.create img{
+  width: 350px;
+  height: 350px;
+}
+.content-create-movie{
+  margin-top: 30px;
+}
+.form-group{
+  margin-right: 50px;
+  margin-left: 30px;
+}
+.form-group label{
+  margin-top: 20px;
+}
+.button-submit{
+  text-align: center;
+}
+.chossedate{
+  width: 670px;
+  height: 34px;
+}
+.show-logo{
+  margin-left: 30px;
+}
+.show-logo img{
+  border-radius: 10px;
+}
+.button-file{
+  margin-left: 30px;
+  width: 350px;
+}
+.button-file input{
+  width: 350px;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 10px;
 }
