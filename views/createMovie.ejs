@@ -20,11 +20,11 @@
               </div>
             </div>
             <div class="col-md-6">
-              <!-- <div class="button-menu">
+              <div class="button-menu">
                   <button type="button" class="btn btn-primary">Tạo Phim</button>
                   <button type="button" class="btn btn-primary">Tài Khoản</button>
                   <button type="button" class="btn btn-primary">Đăng Xuất</button>
-              </div> -->
+              </div>
             </div>
         </div>
       </div>
@@ -63,8 +63,8 @@
                     <br>
                     <input type="text" class="chossedate" id="chossedate">
                     <br>
-                    <label ng-model="data.moTa">Mô tả phim</label>
-                    <textarea class="form-control" rows="5" id="comment">Mô tả phim...</textarea>
+                    <label>Mô tả phim</label>
+                    <textarea class="form-control" rows="5" id="comment" placeholder="Mô tả phim..." ng-model="data.moTa"></textarea>
                     <div class="button-submit" ng-click="createMovie()">
                         <button type="button" class="btn btn-primary">Tạo Phim</button>
                     </div>
@@ -92,7 +92,7 @@
     var day = ("0" + now.getDate()).slice(-2);
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
 
-    var today = now.getFullYear()+"-"+(day)+"-"+(month) ;
+    var today = now.getFullYear()+"/"+(day)+"/"+(month) ;
     $('#chossedate').val(today);
 });
 </script>

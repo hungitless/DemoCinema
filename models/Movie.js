@@ -19,4 +19,5 @@ var MovieSchema = new Schema({
         default: ''
     }
 }, { usePushEach: true });
-var SomeModel = mongoose.model('Movie',MovieSchema);
+
+mongoose.model('Movie', MovieSchema);

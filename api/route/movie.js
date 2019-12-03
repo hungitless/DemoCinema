@@ -8,7 +8,7 @@ route.post('/', async function(req, res){
         let response = await movieController.createMovie(req.body);
         res.send(response);
     } catch (error) {
-        Console.log(error);
+        console.log(error);
     }
 });
 module.exports = route;

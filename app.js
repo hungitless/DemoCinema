@@ -41,10 +41,13 @@ app.use(function (err, req, res, next) {
 
 module.exports = app;
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://admin:admin@cinema-9zo1y.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  // perform actions on the collection object
-  client.close();
-});
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb+srv://admin:admin@cinema-9zo1y.mongodb.net/cinema?retryWrites=true&w=majority',{
+    useNewUrlParser: true,
+    useCreateIndex:true,
+    useUnifiedTopology: true
+})
+mongoose.connection
+.then(()=>console.log('DB connected!'))
+.catch(err=>console.log(err.message))
