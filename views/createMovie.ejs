@@ -16,7 +16,9 @@
           <div class="row">
             <div class="col-md-6">
               <div class="logo">
-                <p>CINEMA</p>
+                <a href="/">  
+                  <p>CINEMA</p>
+                </a>
               </div>
             </div>
             <div class="col-md-6">
@@ -47,17 +49,20 @@
                 </div>
               </div>
               <div class="col-md-8">
-                  <div class="form-group">
+                  <div class="form-group show-info">
                     <label>Tên bộ phim</label>
-                    <input type="text" class="form-control" id="usr" placeholder="Tên phim" ng-model="data.tenPhim">
+                    <input type="text" class="form-control" id="usr" placeholder="Tên phim" ng-model="data.tenPhim" require>
+                    <!-- <div class=show-error>
+                      <p ng-show="errName=true">Trường này là bắt buộc !!!</p>
+                      <br>
+                    </div> -->
                     <label for="sel1">Thể loại phim</label>
-                    <select class="form-control" id="sel1" ng-model="data.theLoai">
-                        <option selected="selected">Chọn thể loại</option>
-                      <option>Hành Động</option>
-                      <option>Tình Cảm</option>
+                    <select class="form-control" ng-model="data.theLoai">
+                      <option ng-repeat="theloai in theLoai">{{theloai}}</option>
+                      <!-- <option>Tình Cảm</option>
                       <option>Hoạt Hình</option>
                       <option>Viễn Tưởng</option>
-                      <option>Chiến Tranh</option>
+                      <option>Chiến Tranh</option> -->
                     </select>
                     <label>Thời gian phát hành</label>
                     <br>
@@ -84,16 +89,12 @@
 </html>
 <script>
   $(document).ready( function() {
-    $( function() {
-      $( "#chossedate" ).datepicker();
-    } );
-    var now = new Date();
- 
-    var day = ("0" + now.getDate()).slice(-2);
-    var month = ("0" + (now.getMonth() + 1)).slice(-2);
-
-    var today = now.getFullYear()+"/"+(day)+"/"+(month) ;
-    $('#chossedate').val(today);
+    $("#chossedate").datepicker({
+        defaultDate: Date.now(),
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy'
+  }).datepicker('setDate', Date.now())
 });
 </script>
-<script src="javascripts/app.js"></script>
+<script src="javascripts/createMovie.js"></script>

@@ -41,6 +41,9 @@ app.use(function (err, req, res, next) {
 
 module.exports = app;
 
+
+
+
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb+srv://admin:admin@cinema-9zo1y.mongodb.net/cinema?retryWrites=true&w=majority',{
@@ -49,5 +52,5 @@ mongoose.connect('mongodb+srv://admin:admin@cinema-9zo1y.mongodb.net/cinema?retr
     useUnifiedTopology: true
 })
 mongoose.connection
-.then(()=>console.log('DB connected!'))
-.catch(err=>console.log(err.message))
+  .then(()=>console.log('DB connected!'))
+  .catch(err=>console.log(err.message))

@@ -1,6 +1,9 @@
 body {
   font: Arial, Helvetica, sans-serif;
 }
+p{
+  font-size: 15px;
+}
 a {
   color: #00B7FF;
 }
@@ -12,10 +15,11 @@ footer{
   margin-top: 20px;
   background-color: #000;
 }
-p{
+.logo p{
   color: #fff;
   font-size: 60px;
   font-weight: 500;
+  /* sai */
 }
 .btn{
   margin-top: 15px;
@@ -73,4 +77,76 @@ p{
   border: 1px solid #000;
   border-radius: 10px;
   padding: 10px;
+}
+
+/* start list film */
+.select-film select{
+  margin-right: 5px;
+  height: 34px;
+}
+.item-film{
+  margin-bottom: 20px;
+}
+.item-film img{
+  width: 100%;
+}
+.box-search {
+  margin-bottom: 0px !important;
+}
+.show-movie{
+  margin-top: 30px;
+  padding-top: 30px;
+}
+.desription{
+  background-color: #000;
+  position: absolute;
+  width: 92%;
+  bottom: 0px;
+  left: 15px;
+  right: 15px;;
+  height: 90px;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+  
+}
+.show-des{
+  display: none;
+}
+.desription:hover{
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.desription:hover .show-des{
+  display: block;
+}
+.film{
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.desription p{
+  color: #fff;
+  font-size: 20px;
+  padding-left: 15px;
+}
+.desription h2{
+  color: #fff;
+  padding-left: 15px;
+}
+.hr-fiml{
+  margin: 0px;
+}
+footer{
+  position: absolute;
+  right: 0px;
+  left: 0px;
+}
+.desription h2{
+  margin-top: 10px;
+}
+.show-error p{
+  font-size: 15px;
+  float: left;
+  margin-top: 20px;
 }

@@ -10,6 +10,10 @@ var MovieSchema = new Schema({
         type: String,
         default: ''
     },
+    date: {
+        type: Number,
+        default: Date.now
+    },
     createdTime: {
         type: Number,
         default: Date.now
