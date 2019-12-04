@@ -150,3 +150,7 @@ footer{
   float: left;
   margin-top: 20px;
 }
+.show-error label{
+  margin: 0px;
+  color: red;
+}

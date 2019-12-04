@@ -9,6 +9,6 @@ app.controller('myCrtlListMovie', function($scope, $http){
             console.log(err);
         })
     }
-    $scope.sortMovie = 'name';
+    // $scope.sortMovie = 'name';
 })
       

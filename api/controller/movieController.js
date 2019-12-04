@@ -26,7 +26,7 @@ async function createMovie(data) {
 };
 async function getListMovie() {
     try {
-        let listMovie = await Movie.find({})
+        let listMovie = await Movie.find({}).sort({'createdTime': -1})
         return {
             listMovie: listMovie
             // status: 200,
