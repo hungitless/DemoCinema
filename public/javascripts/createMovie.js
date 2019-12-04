@@ -12,7 +12,6 @@ app.controller('myController', function($scope, $http){
     tenPhim: '',
     theLoai: '',
     moTa: '',
-    ngayChieu: ''
   }
   function formatDateToTimeStamp (date) {
     if (isNaN(date)) {
@@ -31,18 +30,19 @@ app.controller('myController', function($scope, $http){
     $scope.data = {
     tenPhim: '',
     theLoai: '',
-    moTa: ''
+    moTa: '',
     }
   }
 
   $scope.createMovie = () =>{
     if($scope.checkCreate() == true){
       console.log('sucess');
-      $scope.data.ngayChieu = formatDateToTimeStamp($('#chossedate').val());
+      //$scope.data.ngayChieu = formatDateToTimeStamp($('#chossedate').val());
+      $scope.data.ngayChieu = $('#chossedate').val();
       //console.log($scope.data);
       $http.post('api/v1/movie', $scope.data).then(function(res){
         alert("Tạo Thành Công");
-        window.location.href = '/';
+        //window.location.href = '/';
         $scope.retartInput();
         console.log(res.data.movie);
       }).catch(function(err){
@@ -104,8 +104,8 @@ app.controller('myController', function($scope, $http){
     $scope.checkName();
     $scope.checkDes();
     $scope.checkKind();
-    $scope.checkDate();
-    if($scope.checkName() == true && $scope.checkDes() == true && $scope.checkKind() && $scope.checkDate()){
+    // $scope.checkDate();
+    if($scope.checkName() == true && $scope.checkDes() == true && $scope.checkKind() == true){
       return true;
     }
     else{

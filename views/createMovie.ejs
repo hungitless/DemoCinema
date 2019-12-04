@@ -34,7 +34,7 @@
                     <label>Tên bộ phim</label>
                     <input type="text" class="form-control" id="usr" placeholder="Tên phim" ng-model="data.tenPhim" required>
                     <div class=show-error>
-                      <label ng-show="errName">Trường này là bắt buộc !!!</label>
+                      <label ng-show="errName">Trường này là bắt buộc.</label>
                     </div>
                     <label for="sel1">Thể loại phim</label>
                     <select class="form-control" ng-model="data.theLoai">
@@ -46,19 +46,19 @@
                       <option>Chiến Tranh</option> -->
                     </select>
                     <div class=show-error>
-                      <label ng-show="errKind">Trường này là bắt buộc !!!</label>
+                      <label ng-show="errKind">Trường này là bắt buộc.</label>
                     </div>
                     <label>Thời gian phát hành</label>
                     <br>
                     <input type="text" class="chossedate" id="chossedate" ng-model="data.ngayChieu">
                     <div class=show-error>
-                      <label ng-show="errDate">Trường này là bắt buộc !!!</label>
+                      <label ng-show="errDate">Trường này là bắt buộc.</label>
                     </div>
                     <br>
                     <label>Mô tả phim</label>
                     <textarea class="form-control" rows="5" id="comment" placeholder="Mô tả phim..." ng-model="data.moTa"></textarea>
                     <div class=show-error>
-                      <label ng-show="errDescription">Trường này là bắt buộc !!!</label>
+                      <label ng-show="errDescription">Trường này là bắt buộc.</label>
                     </div>
                     <div class="button-submit" ng-click="createMovie()">
                         <button type="button" class="btn btn-primary">Tạo Phim</button>

@@ -102,7 +102,7 @@ footer{
 .desription{
   background-color: #000;
   position: absolute;
-  width: 92%;
+  width: auto;
   bottom: 0px;
   left: 15px;
   right: 15px;;
@@ -124,7 +124,6 @@ footer{
 .film{
   overflow: hidden;
   position: relative;
-  width: 100%;
 }
 
 .desription p{
