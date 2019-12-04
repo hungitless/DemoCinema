@@ -12,6 +12,7 @@ header{
   background-color: #000;
 }
 footer{
+  color: #fff;
   margin-top: 20px;
   background-color: #000;
 }
@@ -31,6 +32,7 @@ footer{
   font-weight: 400;
   text-align: center;
   padding: 10px;
+  margin-bottom: 0px;
 }
 .create{
   background-color: lightgrey;
@@ -153,4 +155,28 @@ footer{
 .show-error label{
   margin: 0px;
   color: red;
+}
+.form-signup{
+  background-color: lightgrey;
+}
+.form-signup-content{
+  margin: 20px 300px;
+}
+.content-form{
+  margin: 0px !important;
+}
+.aline{
+  margin-bottom: 0px !important;
+}
+.form-signup-content input{
+  height: 40px !important;
+}
+.content-form input{
+  /* border-color: red !important; */
+}
+.icon-login{
+  margin-top: 10px;
+}
+.forget-pass{
+  float: right;
 }

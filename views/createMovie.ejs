@@ -11,27 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   </head>
   <body ng-controller="myController">
-    <header>
-      <div class='container'>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="logo">
-                <a href="/">  
-                  <p>CINEMA</p>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="button-menu">
-                  <button type="button" class="btn btn-primary">Tạo Phim</button>
-                  <button type="button" class="btn btn-primary">Tài Khoản</button>
-                  <button type="button" class="btn btn-primary">Đăng Xuất</button>
-              </div>
-            </div>
-        </div>
-      </div>
-    </header>
-
+    <div ng-include="'html/header.html'"></div>
     <content>
       <div class="container">
         <div class="create">
@@ -92,9 +72,7 @@
       </div>
     </content>
     <footer>
-      <div class="license">
-        <p>Copyright © Cinema Website 2019</p>
-      </div>
+      <div ng-include="'html/footer.html'"></div>
     </footer>
   </body>
 </html>

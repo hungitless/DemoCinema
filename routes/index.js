@@ -8,6 +8,13 @@ router.get('/create', function(req, res, next) {
 router.get('/', function(req, res, next) {
   res.render('listMovie', { title: 'Create Movie' });
 });
+router.get('/signup', function(req, res, next) {
+  res.render('signUp', { title: 'Sign Up' });
+});
+
+
+
+
 router.get('/test', function(req, res, next) {
   res.render('test', { title: 'Hung Test' });
 });
