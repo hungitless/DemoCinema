@@ -1,9 +1,16 @@
 let app = angular.module('myApp', []);
 app.controller('aaa', function($scope, $http){
-    alert('123');
-    // $scope.email = '';
-    // alert($scope.data.password);
-    // $scope.login = function(){
-    //     alert($scope.email);
-    // }
-})
+    $scope.login = function(req){
+        // alert("aa + " + session.user);
+        $http.post('api/v1/login', $scope.data).then(function(req, res){
+            console.log(req.data.message);
+            if(req.data.status == 200)
+            {
+                window.location.href = '/';
+            }
+        }).catch(function(err){
+            console.log(err);
+        })
+    }
+});
+

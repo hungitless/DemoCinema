@@ -1,3 +1,4 @@
+
 let app = angular.module('myApp', []);
 app.controller('myCrtlSignUp', function($scope, $http){
     $scope.errUserName = false;
@@ -22,6 +23,7 @@ app.controller('myCrtlSignUp', function($scope, $http){
                 alert("Tạo Thành Công Tài Khoản: " + $scope.data.userName);
                 $scope.clearInfo();
                 console.log(res.data.user);
+                window.location.href = '/';
             }).catch(function(err){
                 //alert('123');
                 console.log(err);

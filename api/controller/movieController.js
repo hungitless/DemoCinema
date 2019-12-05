@@ -26,11 +26,9 @@ async function createMovie(data) {
 };
 async function getListMovie() {
     try {
-        let listMovie = await Movie.find({}).sort({'createdTime': -1})
+        let listMovie = await Movie.find({})
         return {
             listMovie: listMovie
-            // status: 200,
-            // message: "Tao Phim Thanh Cong"
         };
     }
     catch (error) {

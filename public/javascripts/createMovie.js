@@ -37,8 +37,8 @@ app.controller('myController', function($scope, $http){
   $scope.createMovie = () =>{
     if($scope.checkCreate() == true){
       console.log('sucess');
-      //$scope.data.ngayChieu = formatDateToTimeStamp($('#chossedate').val());
-      $scope.data.ngayChieu = $('#chossedate').val();
+      $scope.data.ngayChieu = formatDateToTimeStamp($('#chossedate').val());
+      // $scope.data.ngayChieu = $('#chossedate').val();
       //console.log($scope.data);
       $http.post('api/v1/movie', $scope.data).then(function(res){
         alert("Tạo Thành Công");

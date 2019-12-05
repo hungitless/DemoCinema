@@ -19,17 +19,22 @@
     <div ng-include="'html/header.html'"></div>
     <content>
         <div class="container form-signup" ng-controller="aaa">
+            <!-- <div>
+                <input type="text" ng-model="hung">
+                <button ng-click="test()">Test</button>
+            </div> -->
             <div class="form-signup-content">
                 <h2>Đăng Ký</h2>
                 <p>Vui lòng điền đầy đủ thông tin</p>
                 <hr class="aline">
-                <form>
+                <form name="myForm">
                     <div class="form-group content-form">
                         <label>Email</label>
-                        <input type="email" class="form-control" placeholder="Nhập địa chỉ email dạng: a@gmail.com" ng-model="hungemail" name="hungemail" required>
+                        <input type="email" class="form-control" placeholder = "Nhập địa chỉ email dạng: a@gmail.com" ng-model="data.email" name="email" required>
                         <label>Mật Khẩu</label>
                         <input type="password" class="form-control" placeholder="Nhập mật khẩu" ng-model="data.password" required>
-                        <button type="button" class="btn btn-primary btn-block" ng-click="login()">Đăng Ký</button>
+                        <!-- <input type="email" ng-model="hung"> -->
+                        <button type="input" class="btn btn-primary btn-block" ng-click="login()">Đăng Ký</button>
                     </div>
                 </form>
                 <div class="icon-login">

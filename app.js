@@ -8,7 +8,13 @@ require('./models/User');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var session= require('express-session');
+
+
+
 var app = express();
+
+// app.use(session({secret: ''}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -18,11 +24,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/v1/movie', require('./api/route/movie'));
 app.use('/api/v1/user', require('./api/route/user'));
+app.use('/api/v1/login', require('./api/route/login'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -40,6 +48,20 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
+// app.use(session());
+
+// app.use(session({ secret: 'this-is-a-secret-token'}));
+
+//use sessions for tracking logins
+// app.use(session({
+//   secret: 'work hard',
+//   resave: true,
+//   saveUninitialized: false
+// }));
+
+
+
+
 module.exports = app;
 
 
@@ -55,3 +77,4 @@ mongoose.connect('mongodb+srv://admin:admin@cinema-9zo1y.mongodb.net/cinema?retr
 mongoose.connection
   .then(()=>console.log('DB connected!'))
   .catch(err=>console.log(err.message))
+
