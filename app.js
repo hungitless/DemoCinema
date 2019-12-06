@@ -5,16 +5,52 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('./models/Movie');
 require('./models/User');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// 
 
-var session= require('express-session');
-
-
+var path = require('path');
+// const mongoose = require('mongoose');
+const passport = require('passport');
+const flash = require('connect-flash');
+const session = require('express-session');
 
 var app = express();
 
-// app.use(session({secret: ''}))
+// Passport Config
+require('./config/passport');
+
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+// Express session
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+// Connect flash
+app.use(flash());
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Global variables
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
+
+// Express body parser
+app.use(express.urlencoded({ extended: true }));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,7 +63,6 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 app.use('/api/v1/movie', require('./api/route/movie'));
 app.use('/api/v1/user', require('./api/route/user'));
 app.use('/api/v1/login', require('./api/route/login'));
@@ -48,24 +83,8 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-// app.use(session());
-
-// app.use(session({ secret: 'this-is-a-secret-token'}));
-
-//use sessions for tracking logins
-// app.use(session({
-//   secret: 'work hard',
-//   resave: true,
-//   saveUninitialized: false
-// }));
-
-
-
 
 module.exports = app;
-
-
-
 
 const mongoose = require('mongoose');
 

@@ -19,7 +19,7 @@ app.controller('myCrtlSignUp', function($scope, $http){
         $scope.checkPasswordAgain();
         if($scope.checkEmail() == true && $scope.checkName() == true && $scope.checkPassword() == true && $scope.checkPasswordAgain() == true){
             console.log('sucess');
-            $http.post('api/v1/user', $scope.data).then(function(res){
+            $http.post('/api/v1/user', $scope.data).then(function(res){
                 alert("Tạo Thành Công Tài Khoản: " + $scope.data.userName);
                 $scope.clearInfo();
                 console.log(res.data.user);

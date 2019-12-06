@@ -1,23 +1,24 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var UserSchema = new Schema({
-    name: {
-        type: String,
-        default: ''
-    },
-    email: {
-        type: String,
-        default: ''
-    },
-    createdTime: {
-        type: Number,
-        default: Date.now
-    },
-    password: {
-        type: String,
-        default: ''
-    }
-}, { usePushEach: true });
+const UserSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  }
+});
 
-mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
+
+module.exports = User;
