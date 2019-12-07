@@ -12,6 +12,9 @@ router.get('/signup', (req, res) => res.render('signUp'));
 // Register Page 
 router.get('/profile', (req, res) => res.render('profileUser'));
 
+// Change Pass
+router.get('/changePass', (req, res) => res.render('changePass'));
+
 // Register
 // router.post('/signup', (req, res) => {
 // });

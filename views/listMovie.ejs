@@ -15,6 +15,7 @@
 </head>
 <body ng-controller="listMovieController">
     <div ng-include="'html/header.html'"></div>
+    <!-- {{hung}} -->
     <content>
         <div class="container">
             <div class="custom-select select-film" style="display: inline">
@@ -43,11 +44,14 @@
                 </select>
                 <div class="form-group box-search" style="float: right">
                     <input type="text" class="form-control" id="usr" placeholder="Tìm kiếm" ng-model=searchText>
+                    <!-- <p ng-model="giatri">{{hung}}</p> -->
                 </div>
             </div>
             <div class="show-movie" ng-init="showListMovie()">
                 <div class="row">
-                    <div class="col-md-4 item-film" ng-repeat="movie in listMovie | orderBy: sortMovie1: sortMovie2: sortMovie3 | filter: searchText">
+                    <div class="col-md-4 item-film" ng-show='sortOne' ng-repeat="movie in listMovie | orderBy: sortMovie3 | filter: searchText">
+                    <!-- <div class="col-md-4 item-film" ng-show="sortTwo" ng-repeat="movie in listMovie | orderBy: sortMovie3: sortMovie2: sortMovie1 | filter: searchText">
+                    <div class="col-md-4 item-film" ng-show="sortThe" ng-repeat="movie in listMovie | orderBy: sortMovie2: sortMovie1: sortMovie3 | filter: searchText"> -->
                         <a href="/movie/{{movie._id}}">
                             <div class="fiml">
                                 <img src="https://i.ibb.co/7RBx9xq/film.jpg" alt="icon phim">

@@ -24,6 +24,14 @@ route.get('/profile', async function(req, res){
         console.log(error);
     }
 });
+route.post('/changePass', async function(req, res){
+    try {
+        let response = await userController.changePass(req.body);
+        res.send(response);
+    } catch (error) {
+        console.log(error);
+    }
+});
 // oute.get('/detail/:id', async function(req, res){
 //     try {
 //         let response = await movieController.getDetailMovie(req.params.id);

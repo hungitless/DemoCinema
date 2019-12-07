@@ -29,6 +29,7 @@ async function logIn(data) {
         let user = await User.findOne({ email: data.email });
 
         if (user) {
+            
             if (passwordHash.verify(data.password, user.password)) {
                 //console.log("ok");
                 // window.location.href = '/';
@@ -63,8 +64,36 @@ async function getDetailUser(id){
        };
 }
 
+async function changePass(data) {
+    //let a = data.email;
+    //et hung = data;
+    let user = await User.findById(data.id);
+    //let hung = passwordHash.generate(data.pass.passwordOld);
+    //let a = user.password;
+    //let b = passwordHash.generate(data.pass.passwordOld);
+    let a = passwordHash.verify(data.pass.passwordOld, user.password);
+    if(passwordHash.verify(data.pass.passwordOld, user.password) == false)
+    {
+        return{
+            status: 400,
+            thongbao: "Mật khẩu hiện tại không hợp lệ",
+            //errorMessage: "Mật khẩu hiện tại không hợp lệ"
+        }
+    }
+    else{
+        user.password = passwordHash.generate(data.pass.passwordNew);
+        await user.save();
+        return{
+            status: 200,
+            message: 'Cập nhật thành công'
+        }
+    }
+    
+};
+
 module.exports = {
     singUp,
     logIn,
-    getDetailUser
+    getDetailUser,
+    changePass
 }

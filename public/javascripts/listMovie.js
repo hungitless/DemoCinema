@@ -1,6 +1,10 @@
 let app = angular.module('myApp', []);
 
 app.controller('listMovieController', function($scope, $http){
+    //$scope.hung = "sortThe";
+    $scope.sortOne = true;
+    // $scope.sortTwo = true;
+    // $scope.sortThe = false;
 
     $scope.btnSignUp = true;
     $scope.btnLogin = true;
@@ -75,6 +79,10 @@ app.controller('listMovieController', function($scope, $http){
     $scope.sortMovie1 = '-date';
     $scope.sortMovie2 = '-createdTime';
     $scope.sortMovie3 = '-name';
-    // $scope.
+
+    // $scope.selectSort = function(){
+    //     //alert('12');
+    //     $scope.hung = "sortMovie3";
+    // }
 })
       

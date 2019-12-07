@@ -32,7 +32,7 @@ app.controller('myController', function ($scope, $http) {
     {
         $scope.delete_cookie('user');
         $scope.checkCookie();
-        window.location.href = '/login';
+        window.location.href = '/users/login';
         $scope.btnSignUp = true;
         $scope.btnLogin = true;
         $scope.btnCreate = false;
