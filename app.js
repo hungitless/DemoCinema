@@ -10,7 +10,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 require('./config/passport');
-const cors = require('cors');
+// const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const _ = require('lodash');
@@ -45,8 +45,8 @@ app.use(function(req, res, next) {
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', require('./route/index'));
-app.use('/users', require('./route/users'));
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -116,11 +116,11 @@ app.use(fileUpload({
   createParentPath: true
 }));
 
-//add other middleware
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(morgan('dev'));
+// //add other middleware
+// app.use(cors());
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: true}));
+// app.use(morgan('dev'));
 
 
 //make uploads directory static

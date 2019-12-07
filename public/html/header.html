@@ -10,9 +10,11 @@
             </div>
             <div class="col-md-6">
             <div class="button-menu">
-                <!-- <a href="/create"><button type="button" class="btn btn-primary">Tạo Phim</button></a> -->
-                <a href="/users/signup"><button type="button" class="btn btn-primary">Đăng Kí</button></a>
-                <a href="/users/login"><button type="button" class="btn btn-primary">Đăng Nhập</button>
+                <a href="/users/signup" ng-show="btnSignUp"><button type="button" class="btn btn-primary">Đăng Kí</button></a>
+                <a href="/users/login" ng-show="btnLogin"><button type="button" class="btn btn-primary">Đăng Nhập</button></a>
+                <a href="/create" ng-show="btnCreate"><button type="button" class="btn btn-primary">Tạo Phim</button></a>
+                <a href="" ng-show="btnLogout" ng-click="logOut()"><button type="button" class="btn btn-primary">Đăng Xuất</button></a>
+                <a href="/users/profile" ng-show="btnProfile"><button type="button" class="btn btn-primary">Tài Khoản</button></a>
             </div>
             </div>
         </div>

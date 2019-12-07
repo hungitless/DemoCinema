@@ -1,6 +1,12 @@
 let app = angular.module('myApp', []);
 
 app.controller('myController', function ($scope, $http) {
+  $scope.btnSignUp = false;
+  $scope.btnLogin = false;
+  $scope.btnCreate = true;
+  $scope.btnLogout = true;
+  $scope.btnProfile = true;
+
   $scope.errName = false;
   $scope.errDescription = false;
   $scope.errKind = false;
@@ -44,7 +50,7 @@ app.controller('myController', function ($scope, $http) {
       //console.log($scope.data);
       $http.post('api/v1/movie', $scope.data).then(function (res, req) {
         alert("Tạo Thành Công");
-        //window.location.href = '/';
+        window.location.href = '/';
         $scope.retartInput();
         console.log(res.data.movie);
       }).catch(function (err) {
@@ -112,6 +118,21 @@ app.controller('myController', function ($scope, $http) {
     }
     else {
       return false;
+    }
+  }
+  $scope.logOut = function(){
+    //alert('123');
+    let valueConfirm = confirm("Bạn có muốn đăng xuất");
+    //alert(valueConfirm);
+    if(valueConfirm == true)
+    {
+        $scope.delete_cookie('user');
+        $scope.checkCookie();
+        $scope.btnSignUp = true;
+        $scope.btnLogin = true;
+        $scope.btnCreate = false;
+        $scope.btnLogout = false;
+        $scope.btnProfile = false;
     }
   }
 })

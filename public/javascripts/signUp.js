@@ -1,17 +1,30 @@
 
 let app = angular.module('myApp', []);
-app.controller('myCrtlSignUp', function ($scope, $http) {
+app.controller('signUpController', function ($scope, $http) {
     $scope.errUserName = false;
     $scope.errEmail = false;
     $scope.errPasswordAgain = false;
     $scope.errPassword = false;
 
+    $scope.btnSignUp = true;
+    $scope.btnLogin = true;
+    $scope.btnCreate = false;
+    $scope.btnLogout = false;
+    $scope.btnProfile = false;
 
     $scope.data = {
         userName: null,
         email: null,
         password: null
     }
+
+    $scope.setCookie = function(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
     $scope.signUp = function () {
         $scope.checkName();
         $scope.checkEmail();
@@ -20,10 +33,12 @@ app.controller('myCrtlSignUp', function ($scope, $http) {
         if ($scope.checkEmail() == true && $scope.checkName() == true && $scope.checkPassword() == true && $scope.checkPasswordAgain() == true) {
             console.log('sucess');
             $http.post('/api/v1/user', $scope.data).then(function (req, res) {
-                console.log("aa + " + req.data.status);
+                //console.log("id user + " + req.data.users._id);
                 if(req.data.status == 200)
                 {
-                    window.location.href('/');
+                    window.location.href = "/";
+                    $scope.setCookie('user', req.data.user._id, 1);
+                    //$scope.setCookie('user', req.data.user._id, 1);
                 }
                 alert("Tạo Thành Công Tài Khoản: " + $scope.data.userName);
                 $scope.clearInfo();

@@ -25,7 +25,6 @@ async function singUp(data) {
 };
 
 async function logIn(data) {
-    try {
         //let a = data.email;
         let user = await User.findOne({ email: data.email });
 
@@ -37,27 +36,24 @@ async function logIn(data) {
                 return {
                     //kq: true,
                     status: 200,
-                    message: "Đăng Nhập Thành Công"
+                    message: "Đăng Nhập Thành Công",
+                    user: user
                 }
                 //alert("Login Sucess");
             }
             else {
                 return {
-                    kq: false,
+                    status: 400,
                     message: "Sai Mật Khẩu"
                 }
             }
         }
         else {
             return {
-                kq: false,
-                message: "Sai Email"
+                status: 401,
+                message: "Email Không Tồn Tại"
             }
         }
-    }
-    catch (error) {
-        console.log(error)
-    }
 };
 
 module.exports = {

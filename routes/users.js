@@ -14,13 +14,13 @@ router.get('/signup', (req, res) => res.render('signUp'));
 // });
 
 // Login
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/users/login',
-    failureFlash: true
-  })(req, res, next);
-});
+// router.post('/login', (req, res, next) => {
+//   passport.authenticate('local', {
+//     successRedirect: '/',
+//     failureRedirect: '/users/login',
+//     failureFlash: true
+//   })(req, res, next);
+// });
 
 // Logout
 router.get('/logout', (req, res) => {

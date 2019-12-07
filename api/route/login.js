@@ -5,7 +5,7 @@ const route = express.Router();
 
 route.post('/', async function(req, res){
     try {
-        let response = await userController.singIn(req.body);
+        let response = await userController.logIn(req.body);
         res.send(response);
     } catch (error) {
         console.log(error);
