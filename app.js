@@ -18,8 +18,8 @@ var app = express();
 // Passport Config
 require('./config/passport');
 
-app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
+app.use('/', require('./route/index'));
+app.use('/users', require('./route/users'));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
