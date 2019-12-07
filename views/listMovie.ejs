@@ -48,16 +48,18 @@
             <div class="show-movie" ng-init="showListMovie()">
                 <div class="row">
                     <div class="col-md-4 item-film" ng-repeat="movie in listMovie">
-                        <div class="fiml">
-                            <img src="https://i.ibb.co/7RBx9xq/film.jpg" alt="icon phim">
-                            <div class="desription">
-                                <h2 class="d-name-film">{{movie.name}}</h2>
-                                <hr class="hr-fiml">
-                                <p class=show-kind>{{movie.kind}}</p>
-                                <p class="show-des">{{movie.date | date: 'dd/MM/yyyy'}}</p>
-                                <p class="show-des">{{movie.description}}</p>
+                        <a href="/movie/{{movie._id}}">
+                            <div class="fiml">
+                                <img src="https://i.ibb.co/7RBx9xq/film.jpg" alt="icon phim">
+                                <div class="desription">
+                                    <h2 class="d-name-film">{{movie.name}}</h2>
+                                    <hr class="hr-fiml">
+                                    <p class=show-kind>{{movie.kind}}</p>
+                                    <p class="show-des">{{movie.date | date: 'dd/MM/yyyy'}}</p>
+                                    <p class="show-des">{{movie.description}}</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>

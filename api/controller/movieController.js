@@ -12,6 +12,10 @@ async function createMovie(data) {
         movie = await movie.save()
         if (!movie) {
             console.log('fail')
+            throw {
+                status: 400,
+                errorMessage: ''
+            }
         }
         console.log('success')
         return {
@@ -35,7 +39,20 @@ async function getListMovie() {
         console.log(error)
     }
 };
+
+async function getDetailMovie(data){
+    try {
+        let listMovie = await Movie.findOne({"_id" : data})
+        return {
+            listMovie: listMovie
+        };
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
 module.exports = {
     createMovie,
-    getListMovie
+    getListMovie,
+    getDetailMovie
 }

@@ -5,18 +5,45 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('./models/Movie');
 require('./models/User');
-// 
-
 var path = require('path');
-// const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+require('./config/passport');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const _ = require('lodash');
+const fileUpload = require('express-fileupload');
 
 var app = express();
 
-// Passport Config
-require('./config/passport');
+// Express session
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+// Connect flash
+app.use(flash());
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Global variables
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
+
+// Express body parser
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
@@ -83,6 +110,21 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
+//hung file upload
+// enable files upload
+app.use(fileUpload({
+  createParentPath: true
+}));
+
+//add other middleware
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(morgan('dev'));
+
+
+//make uploads directory static
+app.use(express.static('uploads'));
 
 module.exports = app;
 

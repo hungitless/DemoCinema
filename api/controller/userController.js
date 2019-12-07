@@ -14,9 +14,9 @@ async function singUp(data) {
             console.log('fail')
         }
         return {
-            user: user
-            // status: 200,
-            // message: "Dang Ky Thanh Cong"
+            user: user,
+            status: 200,
+            message: "Dang Ky Thanh Cong"
         };
     }
     catch (error) {
@@ -27,27 +27,30 @@ async function singUp(data) {
 async function logIn(data) {
     try {
         //let a = data.email;
-        let user = await User.findOne({email : data.email});
-        if(user)
-        {
-            if(passwordHash.verify(data.password, user.password))
-            {
+        let user = await User.findOne({ email: data.email });
+
+        if (user) {
+            if (passwordHash.verify(data.password, user.password)) {
                 //console.log("ok");
-                //window.location.href = '/';
-                return{
+                // window.location.href = '/';
+                // res.redirect('/users/login');
+                return {
+                    //kq: true,
                     status: 200,
                     message: "Đăng Nhập Thành Công"
                 }
                 //alert("Login Sucess");
             }
-            else{
-                return{
+            else {
+                return {
+                    kq: false,
                     message: "Sai Mật Khẩu"
                 }
             }
         }
-        else{
-            return{
+        else {
+            return {
+                kq: false,
                 message: "Sai Email"
             }
         }

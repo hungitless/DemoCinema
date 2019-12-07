@@ -25,11 +25,11 @@
                   <img src="/images/logo.png" alt="Hinh Demo">
                 </div>
                 <div class="button-file">
-                    <input type="file" name="myFile">
+                    <input type="file" name="fileUploaded">
                 </div>
               </div>
               <div class="col-md-8">
-                <form name="myForm">
+                <form name="myForm" method="POST" encType="multipart/form-data">
                   <div class="form-group show-info">
                     <label>Tên bộ phim</label>
                     <input type="text" class="form-control" id="usr" placeholder="Tên phim" ng-model="data.tenPhim" required>
@@ -61,7 +61,7 @@
                       <label ng-show="errDescription">Trường này là bắt buộc.</label>
                     </div>
                     <div class="button-submit" ng-click="createMovie()">
-                        <button type="button" class="btn btn-primary">Tạo Phim</button>
+                        <button type="submit" class="btn btn-primary">Tạo Phim</button>
                     </div>
                   </div>
                 </form>

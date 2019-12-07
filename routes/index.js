@@ -35,11 +35,19 @@ router.get('/create', function(req, res, next) {
 router.get('/', function(req, res, next) {
   res.render('listMovie', { title: 'List Movie' });
 });
-
+router.get('/movie', function(req, res, next) {
+  res.render('detailMovie', { title: 'Detail Movie' });
+});
 // router.get('/signup', function(req, res, next) {
 //   res.render('signUp', { title: 'Sign Up' });
 // });
 // router.get('/login', function(req, res, next) {
 //   res.render('login', { title: 'Login' });
 // });
+router.get('/movie/:id', function(req, res, next) {
+  res.render('detailMovie', { 
+    title: 'Detail Movie',
+    id: req.params.id
+  });
+});
 module.exports = router;
