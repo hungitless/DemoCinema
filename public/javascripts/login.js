@@ -9,8 +9,8 @@ app.controller('loginController', function($scope, $http){
 
     $scope.login = function(){
         $http.post('/api/v1/login', $scope.data).then(function(req, res){
-        console.log(req.data.user);
-        console.log("a + " + req.data);
+        // console.log(req.data.user);
+        // console.log("a + " + req.data);
             if(req.data.status == 200)
             {
                 window.location.href = '/';

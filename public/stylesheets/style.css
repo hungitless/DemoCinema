@@ -182,3 +182,6 @@ footer{
 button:hover{
   cursor: pointer !important;
 }
+.name-user{
+  /* float: left; */
+}

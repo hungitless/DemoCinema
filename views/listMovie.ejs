@@ -26,28 +26,28 @@
                     <option value="4">Tình Cảm</option>
                     <option value="5">Kinh Dị</option>
                 </select>
-                <select data-inline="true" style="float: left"> 
+                <select data-inline="true" style="float: left" ng-model="sortMovie1"> 
                     <option value="0">Lọc Theo Ngày Khởi Chiếu</option>
-                    <option value="1">Phim Mới Nhất</option>
-                    <option value="2">Phim cũ nhất</option>
-                </select>
-                <select data-inline="true" style="float: left"> 
-                    <option value="0">Lọc Theo Ngày Tạo Phim</option>
                     <option value="-date">Phim Mới Nhất</option>
                     <option value="date">Phim cũ nhất</option>
                 </select>
-                <select data-inline="true" style="float: left" ng-model="sortMovie"> 
-                    <option value="0">Lọc Theo Tên</option>
+                <select data-inline="true" style="float: left"  ng-model="sortMovie2">  
+                    <option value="0">Lọc Theo Ngày Tạo Phim</option>
+                    <option value="-createdTime">Phim Mới Nhất</option>
+                    <option value="createdTime">Phim cũ nhất</option>
+                </select>
+                <select data-inline="true" style="float: left" ng-model="sortMovie3"> 
+                    <option value="" disabled>Lọc Theo Tên</option>
                     <option value="name">A - Z</option>
                     <option value="-name">Z - A</option>
                 </select>
                 <div class="form-group box-search" style="float: right">
-                    <input type="text" class="form-control" id="usr" placeholder="Tìm kiếm">
+                    <input type="text" class="form-control" id="usr" placeholder="Tìm kiếm" ng-model=searchText>
                 </div>
             </div>
             <div class="show-movie" ng-init="showListMovie()">
                 <div class="row">
-                    <div class="col-md-4 item-film" ng-repeat="movie in listMovie">
+                    <div class="col-md-4 item-film" ng-repeat="movie in listMovie | orderBy: sortMovie1: sortMovie2: sortMovie3 | filter: searchText">
                         <a href="/movie/{{movie._id}}">
                             <div class="fiml">
                                 <img src="https://i.ibb.co/7RBx9xq/film.jpg" alt="icon phim">

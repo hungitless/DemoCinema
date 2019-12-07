@@ -56,7 +56,15 @@ async function logIn(data) {
         }
 };
 
+async function getDetailUser(id){
+    let info = await User.findById(id)
+       return {
+           info: info
+       };
+}
+
 module.exports = {
     singUp,
-    logIn
+    logIn,
+    getDetailUser
 }

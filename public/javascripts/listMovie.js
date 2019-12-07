@@ -71,6 +71,10 @@ app.controller('listMovieController', function($scope, $http){
         $scope.btnProfile = true;
     }
     $scope.checkCookie();
-    // $scope.sortMovie = 'name';
+
+    $scope.sortMovie1 = '-date';
+    $scope.sortMovie2 = '-createdTime';
+    $scope.sortMovie3 = '-name';
+    // $scope.
 })
       
