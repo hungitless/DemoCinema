@@ -28,7 +28,7 @@ app.use('/api/v1/user', require('./api/route/user'));
 app.use(function (req, res, next) {
   next(createError(404));
 });
-
+//hung
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
