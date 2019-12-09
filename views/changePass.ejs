@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="images/logo.png"/>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <!-- <script src="https//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies.js"></script> -->
+    <!-- <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-cookies.js"> -->
+    
+</head>
+<body ng-controller="changePassController">
+    <div ng-include="'/html/header.html'"></div>
+    <content>
+        <div class="container form-signup">
+            <!-- <div>
+                <input type="text" ng-model="hung">
+                <button ng-click="test()">Test</button>
+            </div> -->
+            <div class="form-signup-content">
+                <h2>Đổi Mật Khẩu</h2>
+                <!-- <p>Vui lòng điền đầy đủ thông tin</p> -->
+                <hr class="aline">
+                <form name="myForm">
+                    <div class="form-group content-form">
+                        <label>Nhập mật khẩu hiện tại</label>
+                        <input type="password" class="form-control" placeholder="Nhập mật khẩu" ng-model="data.passwordOld" required>
+                        <div class=show-error>
+                            <label ng-show="errPassOld">Trường này là bắt buộc.</label>
+                        </div>
+                        <label>Nhập mật khẩu mới</label>
+                        <input type="password" class="form-control" placeholder="Nhập mật khẩu" ng-model="data.passwordNew" required>
+                        <div class=show-error>
+                            <label ng-show="errPassNew">Trường này là bắt buộc.</label>
+                        </div>
+                        <label>Xác nhận mật khẩu mới</label>
+                        <input type="password" class="form-control" placeholder="Nhập mật khẩu" ng-model="data.passwordNew2" required>
+                        <div class=show-error>
+                            <label ng-show="errPassNew2">Trường này là bắt buộc.</label>
+                            <label ng-show="errPassNew3">Mật khẩu không trùng hợp.</label>
+                        </div>
+                    </div>
+                </form>
+                <div class="icon-login">
+                    <button class="btn-pass" ng-click="backProfile()">Quay về Profile</button>
+                    <button class="btn-pass" ng-click="updatePass()">Cập Nhật</button>
+                </div>
+                <hr>
+            </div>
+
+        </div>
+    </content>
+    <footer>
+        <div ng-include="'/html/footer.html'"></div>
+    </footer>
+</body>
+</html>
+<script src="/javascripts/changePass.js"></script>

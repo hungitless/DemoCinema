@@ -1,10 +1,6 @@
 let app = angular.module('myApp', []);
 
-app.controller('listMovieController', function($scope, $http){
-    //$scope.hung = "sortThe";
-    $scope.sortOne = true;
-    // $scope.sortTwo = true;
-    // $scope.sortThe = false;
+app.controller('profileUserController', function ($scope, $http) {
 
     $scope.btnSignUp = true;
     $scope.btnLogin = true;
@@ -12,6 +8,14 @@ app.controller('listMovieController', function($scope, $http){
     $scope.btnLogout = false;
     $scope.btnProfile = false;
 
+    $scope.changeLayout = function(){
+        $scope.btnSignUp = false;
+        $scope.btnLogin = false;
+        $scope.btnCreate = true;
+        $scope.btnLogout = true;
+        $scope.btnProfile = true;
+    }
+    
     $scope.delete_cookie = function(cname) {
         document.cookie = cname + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     };
@@ -59,22 +63,25 @@ app.controller('listMovieController', function($scope, $http){
           }
         }
     }
-    $scope.showListMovie = function(){
-        $http.get('api/v1/movie').then(function(res){
-            console.log(res.data.listMovie);
-            $scope.listMovie = res.data.listMovie
-        }).catch(function(err){
-            console.log(err);
-        })
-    }
+    
 
-    $scope.changeLayout = function(){
-        $scope.btnSignUp = false;
-        $scope.btnLogin = false;
-        $scope.btnCreate = true;
-        $scope.btnLogout = true;
-        $scope.btnProfile = true;
-    }
+    $scope.btnSignUp = false;
+    $scope.btnLogin = false;
+    $scope.btnCreate = true;
+    $scope.btnLogout = true;
+    $scope.btnProfile = true;
+
     $scope.checkCookie();
-})
-      
+
+    
+    
+    $http.get('/api/v1/user/profile').then(function(res){
+        console.log(res.data.info);
+        $scope.info = res.data.info;
+    }).catch(function(err){
+        console.log(err);
+    })
+
+    
+
+});

@@ -13,10 +13,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <title>List Movie</title>
 </head>
-<body>
-    <div ng-include=" 'html/header.html' "></div>
+<body ng-controller="listMovieController">
+    <div ng-include="'html/header.html'"></div>
+    <!-- {{hung}} -->
     <content>
-        <div class="container" ng-controller="myCrtlListMovie">
+        <div class="container">
             <div class="custom-select select-film" style="display: inline">
                 <select data-inline="true" style="float: left"> 
                     <option value="0">Tất Cả Phim</option>
@@ -26,38 +27,43 @@
                     <option value="4">Tình Cảm</option>
                     <option value="5">Kinh Dị</option>
                 </select>
-                <select data-inline="true" style="float: left"> 
+                <select data-inline="true" style="float: left" ng-model="sortMovie1"> 
                     <option value="0">Lọc Theo Ngày Khởi Chiếu</option>
-                    <option value="1">Phim Mới Nhất</option>
-                    <option value="2">Phim cũ nhất</option>
-                </select>
-                <select data-inline="true" style="float: left"> 
-                    <option value="0">Lọc Theo Ngày Tạo Phim</option>
                     <option value="-date">Phim Mới Nhất</option>
                     <option value="date">Phim cũ nhất</option>
                 </select>
-                <select data-inline="true" style="float: left" ng-model="sortMovie"> 
-                    <option value="0">Lọc Theo Tên</option>
+                <select data-inline="true" style="float: left"  ng-model="sortMovie2">  
+                    <option value="0">Lọc Theo Ngày Tạo Phim</option>
+                    <option value="-createdTime">Phim Mới Nhất</option>
+                    <option value="createdTime">Phim cũ nhất</option>
+                </select>
+                <select data-inline="true" style="float: left" ng-model="sortMovie3"> 
+                    <option value="" disabled>Lọc Theo Tên</option>
                     <option value="name">A - Z</option>
                     <option value="-name">Z - A</option>
                 </select>
                 <div class="form-group box-search" style="float: right">
-                    <input type="text" class="form-control" id="usr" placeholder="Tìm kiếm">
+                    <input type="text" class="form-control" id="usr" placeholder="Tìm kiếm" ng-model=searchText>
+                    <!-- <p ng-model="giatri">{{hung}}</p> -->
                 </div>
             </div>
             <div class="show-movie" ng-init="showListMovie()">
                 <div class="row">
-                    <div class="col-md-4 item-film" ng-repeat="movie in listMovie">
-                        <div class="fiml">
-                            <img src="https://i.ibb.co/7RBx9xq/film.jpg" alt="icon phim">
-                            <div class="desription">
-                                <h2 class="d-name-film">{{movie.name}}</h2>
-                                <hr class="hr-fiml">
-                                <p class=show-kind>{{movie.kind}}</p>
-                                <p class="show-des">{{movie.date | date: 'dd/MM/yyyy'}}</p>
-                                <p class="show-des">{{movie.description}}</p>
+                    <div class="col-md-4 item-film" ng-show='sortOne' ng-repeat="movie in listMovie | filter: searchText">
+                    <!-- <div class="col-md-4 item-film" ng-show="sortTwo" ng-repeat="movie in listMovie | orderBy: sortMovie3: sortMovie2: sortMovie1 | filter: searchText">
+                    <div class="col-md-4 item-film" ng-show="sortThe" ng-repeat="movie in listMovie | orderBy: sortMovie2: sortMovie1: sortMovie3 | filter: searchText"> -->
+                        <a href="/movie/{{movie._id}}">
+                            <div class="fiml">
+                                <img src="https://i.ibb.co/7RBx9xq/film.jpg" alt="icon phim">
+                                <div class="desription">
+                                    <h2 class="d-name-film">{{movie.name}}</h2>
+                                    <hr class="hr-fiml">
+                                    <p class=show-kind>{{movie.kind}}</p>
+                                    <p class="show-des">{{movie.date | date: 'dd/MM/yyyy'}}</p>
+                                    <p class="show-des">{{movie.description}}</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>

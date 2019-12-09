@@ -1,9 +1,38 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
+// router.get('/', (req, res) => res.render('login'));
+// Welcome Page
+router.get('/login', (req, res) => res.render('login'));
+// Register Page 
+router.get('/signup', (req, res) => res.render('signUp'));
 
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
+// Register Page 
+router.get('/profile', (req, res) => res.render('profileUser'));
+
+// Change Pass
+router.get('/changePass', (req, res) => res.render('changePass'));
+
+// Register
+// router.post('/signup', (req, res) => {
 // });
+
+// Login
+// router.post('/login', (req, res, next) => {
+//   passport.authenticate('local', {
+//     successRedirect: '/',
+//     failureRedirect: '/users/login',
+//     failureFlash: true
+//   })(req, res, next);
+// });
+
+// Logout
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success_msg', 'You are logged out');
+  res.redirect('/users/login');
+});
 
 module.exports = router;

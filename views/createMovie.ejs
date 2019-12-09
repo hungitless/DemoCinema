@@ -22,46 +22,46 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="show-logo">
-                  <img src="/images/logo.png" alt="Hinh Demo">
+                  <img src="/images/logo.png" alt="Hinh Demo" id="img-movie">
                 </div>
                 <div class="button-file">
-                    <input type="file" name="myFile">
+                    <input type="file" name="fileUploaded" id="img-film" onchange="readURL(this);">
+                    <div class=show-error>
+                      <label ng-show="errImg">Trường này là bắt buộc.</label>
+                    </div>
                 </div>
+                
               </div>
               <div class="col-md-8">
-                <form name="myForm">
+                <form name="myForm" method="POST" encType="multipart/form-data">
                   <div class="form-group show-info">
                     <label>Tên bộ phim</label>
                     <input type="text" class="form-control" id="usr" placeholder="Tên phim" ng-model="data.tenPhim" required>
                     <div class=show-error>
-                      <label ng-show="errName">Trường này là bắt buộc !!!</label>
+                      <label ng-show="errName">Trường này là bắt buộc.</label>
                     </div>
                     <label for="sel1">Thể loại phim</label>
-                    <select class="form-control" ng-model="data.theLoai">
+                    <select class="form-control" ng-model="data.theLoai" id="type">
                       <option value="" disabled>Chọn Thể Loại</option>
                       <option ng-repeat="kind in theLoai">{{kind}}</option>
-                      <!-- <option>Tình Cảm</option>
-                      <option>Hoạt Hình</option>
-                      <option>Viễn Tưởng</option>
-                      <option>Chiến Tranh</option> -->
                     </select>
                     <div class=show-error>
-                      <label ng-show="errKind">Trường này là bắt buộc !!!</label>
+                      <label ng-show="errKind">Trường này là bắt buộc.</label>
                     </div>
                     <label>Thời gian phát hành</label>
                     <br>
                     <input type="text" class="chossedate" id="chossedate" ng-model="data.ngayChieu">
                     <div class=show-error>
-                      <label ng-show="errDate">Trường này là bắt buộc !!!</label>
+                      <label ng-show="errDate">Trường này là bắt buộc.</label>
                     </div>
                     <br>
                     <label>Mô tả phim</label>
                     <textarea class="form-control" rows="5" id="comment" placeholder="Mô tả phim..." ng-model="data.moTa"></textarea>
                     <div class=show-error>
-                      <label ng-show="errDescription">Trường này là bắt buộc !!!</label>
+                      <label ng-show="errDescription">Trường này là bắt buộc.</label>
                     </div>
                     <div class="button-submit" ng-click="createMovie()">
-                        <button type="button" class="btn btn-primary">Tạo Phim</button>
+                        <button type="submit" class="btn btn-primary">Tạo Phim</button>
                     </div>
                   </div>
                 </form>
@@ -83,7 +83,19 @@
         changeMonth: true,
         changeYear: true,
         dateFormat: 'dd/mm/yy'
-  }).datepicker('setDate', Date.now())
+  }).datepicker('setDate', Date.now());
 });
+function readURL(input) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          $('#img-movie')
+              .attr('src', e.target.result)
+              .width(300)
+              .height(250);
+      };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
 </script>
 <script src="javascripts/createMovie.js"></script>
