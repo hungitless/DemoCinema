@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <title></title>
+    <link rel="shortcut icon" type="image/png" href="images/logo.png"/>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  </head>
+  <body ng-controller="detailMovieController">
+    <div ng-include="'/html/header.html'"></div>
+    <content>
+      <div class="container">
+        <div class="create">
+          <div class="title">
+            <p hidden id="id" ng-model="id"><%=id %></p>
+            <p>{{detail.name}}</p>
+          </div>
+          <div class="content-create-movie">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="show-logo">
+                  <img src="/images/logo.png" alt="Hinh Demo">
+                </div>
+              </div>
+              <div class="col-md-8">
+                <!-- <form name="myForm" method="POST" encType="multipart/form-data"> -->
+                  <div class="form-group show-info">
+                    <label>Thể loại phim: {{detail.kind}}</label>
+                    <br>
+                    <label>Thời gian phát hành: {{detail.date | date: 'dd-MM-yyyy'}}</label>
+                    <br>
+                    <label>Mô tả: {{detail.description}}</label>
+                  </div>
+                <!-- </form> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </content>
+    <footer>
+      <div ng-include="'/html/footer.html'"></div>
+    </footer>
+  </body>
+</html>
+</script>
+<script src="/javascripts/detailMovie.js"></script>

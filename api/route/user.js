@@ -15,8 +15,10 @@ route.post('/', async function(req, res){
 
 
 route.get('/profile', async function(req, res){
+    //console.log(req);
     try {
         let response = await userController.getProfileUser(req.cookies.user);
+        //console.log(req.body.email);
         res.send(response);
     } catch (error) {
         console.log(error);
