@@ -4,11 +4,13 @@ const Movie = mongoose.model('Movie');
 
 async function createMovie(data) {
     let movie = new Movie();
+    let a = data;
     movie.name = data.tenPhim || '';
     movie.kind = data.theLoai || '';
     movie.date = data.ngayChieu || '';
     movie.description = data.moTa || '';
-    movie = await movie.save()
+    movie.img = data.img;
+    movie = await movie.save();
     if (!movie) {
         console.log('fail')
         throw {
@@ -16,12 +18,12 @@ async function createMovie(data) {
             errorMessage: ''
         }
     }
-    console.log('success')
     return {
+        status: 200,
+        message: "Tao Phim Thanh Cong",
         movie: movie
-        // status: 200,
-        // message: "Tao Phim Thanh Cong"
-    };
+       
+    };                                                           
 };
 async function getListMovie() {
     let listMovie = await Movie.find({}).sort({createdTime: -1});

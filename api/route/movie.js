@@ -1,50 +1,32 @@
 const express = require('express');
 const movieController = require('../controller/movieController');
 const fileUpload = require('express-fileupload');
-
+var multipart = require('connect-multiparty');
 const route = express.Router();
 
-route.post('/', async function(req, res){
+route.post('/', multipart(), async function(req, res){
+    // console.log(req.files);
+    // console.log("123");
     try {
-        let response = await movieController.createMovie(req.body);
+        //req.files.img.mv('./public/images/aa.png');
+        let image = req.files.img;
+        let nameImg = Date.now() + image.name;
+        let imgUrl = '/images/' + nameImg;
+        //image.mv('./public/images/' + nameImg);
+        // image.mv('./public/images/' + nameImg)
+        let { tenPhim, theLoai, ngayChieu, moTa } = req.body;
+        let data = {
+            tenPhim,
+            theLoai,
+            ngayChieu,
+            moTa,
+            img: imgUrl
+        }
+        let response = await movieController.createMovie(data);
         res.send(response);
     } catch (error) {
         console.log(error);
     }
-    // try {
-    //     if(!req.files) {
-    //         res.send({
-    //             status: false,
-    //             message: 'No file uploaded'
-    //         });
-    //     } else {
-    //         let data = []; 
-    
-    //         //loop all files
-    //         _.forEach(_.keysIn(req.files.photos), (key) => {
-    //             let photo = req.files.photos[key];
-                
-    //             //move photo to uploads directory
-    //             photo.mv('./uploads/' + photo.name);
-
-    //             //push file details
-    //             data.push({
-    //                 name: photo.name,
-    //                 mimetype: photo.mimetype,
-    //                 size: photo.size
-    //             });
-    //         });
-    
-    //         //return response
-    //         res.send({
-    //             status: true,
-    //             message: 'Files are uploaded',
-    //             data: data
-    //         });
-    //     }
-    // } catch (err) {
-    //     res.status(500).send(err);
-    // }
 });
 route.get('/', async function(req, res){
     try {

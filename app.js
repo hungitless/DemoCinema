@@ -113,7 +113,7 @@ app.use(function (err, req, res, next) {
 //hung file upload
 // enable files upload
 app.use(fileUpload({
-  createParentPath: true
+  // createParentPath: true
 }));
 
 // //add other middleware

@@ -49,7 +49,7 @@
             </div>
             <div class="show-movie" ng-init="showListMovie()">
                 <div class="row">
-                    <div class="col-md-4 item-film" ng-show='sortOne' ng-repeat="movie in listMovie | orderBy: sortMovie3 | filter: searchText">
+                    <div class="col-md-4 item-film" ng-show='sortOne' ng-repeat="movie in listMovie | filter: searchText">
                     <!-- <div class="col-md-4 item-film" ng-show="sortTwo" ng-repeat="movie in listMovie | orderBy: sortMovie3: sortMovie2: sortMovie1 | filter: searchText">
                     <div class="col-md-4 item-film" ng-show="sortThe" ng-repeat="movie in listMovie | orderBy: sortMovie2: sortMovie1: sortMovie3 | filter: searchText"> -->
                         <a href="/movie/{{movie._id}}">
