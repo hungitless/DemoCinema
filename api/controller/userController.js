@@ -65,12 +65,7 @@ async function getProfileUser(id){
 }
 
 async function changePass(data) {
-    //let a = data.email;
-    //et hung = data;
     let user = await User.findById(data.id);
-    //let hung = passwordHash.generate(data.pass.passwordOld);
-    //let a = user.password;
-    //let b = passwordHash.generate(data.pass.passwordOld);
     let a = passwordHash.verify(data.passwordOld, user.password);
     console.log(a);
     if(a == false){
@@ -90,10 +85,20 @@ async function changePass(data) {
     }
     
 };
+async function edituser(data) {
+    let user = await User.findById(data.id);
+    user.name = data.name;
+    await user.save();
+    return{
+        status: 200,
+        message: 'Cập nhật thành công'
+    }
+};
 
 module.exports = {
     singUp,
     logIn,
     getProfileUser,
-    changePass
+    changePass,
+    edituser
 }

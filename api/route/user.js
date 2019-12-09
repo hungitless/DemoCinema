@@ -32,6 +32,15 @@ route.post('/changePass', async function(req, res){
         console.log(error);
     }
 });
+route.post('/edituser', async function(req, res){
+    console.log('12');
+    try {
+        let response = await userController.edituser(req.body);
+        res.send(response);
+    } catch (error) {
+        console.log(error);
+    }
+});
 // oute.get('/detail/:id', async function(req, res){
 //     try {
 //         let response = await movieController.getDetailMovie(req.params.id);

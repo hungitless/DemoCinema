@@ -15,6 +15,9 @@ router.get('/profile', (req, res) => res.render('profileUser'));
 // Change Pass
 router.get('/changePass', (req, res) => res.render('changePass'));
 
+// Edit Info User
+router.get('/edituser', (req, res) => res.render('editUser'));
+
 // Register
 // router.post('/signup', (req, res) => {
 // });
