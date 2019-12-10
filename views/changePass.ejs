@@ -34,7 +34,7 @@
                         <input type="password" class="form-control" placeholder="Nhập mật khẩu" ng-model="data.passwordOld" required>
                         <div class=show-error>
                             <label ng-show="errPassOld">Trường này là bắt buộc.</label>
-                            <label ng-show="errPassOldNot">Mật khẩu sai.</label>
+                            <!-- <label ng-show="errPassOldNot">Mật khẩu sai.</label> -->
                         </div>
                         <label>Nhập mật khẩu mới</label>
                         <input type="password" class="form-control" placeholder="Nhập mật khẩu" ng-model="data.passwordNew" required>
@@ -45,9 +45,10 @@
                         <input type="password" class="form-control" placeholder="Nhập mật khẩu" ng-model="data.passwordNew2" required>
                         <div class=show-error>
                             <label ng-show="errPassNew2">Trường này là bắt buộc.</label>
-                            <label ng-show="errPassNew3">Mật khẩu không trùng hợp.</label>
+                            <!-- <label ng-show="errPassNew3">Mật khẩu không trùng hợp.</label> -->
                         </div>
                     </div>
+                    <div id="snackbar">{{showContentError}}</div>
                 </form>
                 <div class="icon-login">
                     <button class="btn-pass" ng-click="backProfile()">Quay về Profile</button>

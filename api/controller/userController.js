@@ -37,9 +37,7 @@ async function singUp(data) {
 async function logIn(data) {
         //let a = data.email;
         let user = await User.findOne({ email: data.email });
-
         if (user) {
-            
             if (passwordHash.verify(data.password, user.password)) {
                 //console.log("ok");
                 // window.location.href = '/';
@@ -81,8 +79,8 @@ async function changePass(data) {
     if(a == false){
         return{
             status: 400,
-            message: "Mật khẩu hiện tại không hợp lệ",
-            //errorMessage: "Mật khẩu hiện tại không hợp lệ"
+            // message: "Mật khẩu hiện tại không hợp lệ"
+            errorMessage: "Mật khẩu hiện tại không hợp lệ"
         }
     }
     else{

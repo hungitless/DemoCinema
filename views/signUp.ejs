@@ -33,7 +33,7 @@
                         <input type="email" class="form-control" placeholder="Nhập địa chỉ email dạng: a@gmail.com" ng-model="data.email" name="email" required>
                         <div class=show-error>
                             <label ng-show="errEmail">Trường này là bắt buộc.</label>
-                            <label ng-show="errEmailAready">Email đã tồn tại.</label>
+                            <!-- <label ng-show="errEmailAready">Email đã tồn tại.</label> -->
                         </div>
                         <label>Mật Khẩu</label>
                         <input type="password" class="form-control" placeholder="Nhập mật khẩu" ng-model="data.password" required>
@@ -44,7 +44,7 @@
                         <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" ng-model="passwordAgain" required>
                         <div class=show-error>
                             <label ng-show="errPasswordAgain">Trường này là bắt buộc.</label>
-                            <label ng-show="errPasswordAgain2">Mật khẩu không trùng hợp.</label>
+                            <!-- <label ng-show="errPasswordAgain2">Mật khẩu không trùng hợp.</label> -->
                         </div>
                         <button type="button" class="btn btn-primary btn-block" ng-click="signUp()">Đăng Ký</button>
                     </div>
@@ -60,6 +60,7 @@
                     <a href="" class="forget-pass">
                         <p>Quên mật khẩu?</p>
                     </a>
+                    <div id="snackbar">{{showContentError}}</div>
                 </div>
                 <hr>
             </div>

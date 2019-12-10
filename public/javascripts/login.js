@@ -17,7 +17,10 @@ app.controller('loginController', function($scope, $http){
                 $scope.setCookie('user', req.data.user._id, 1);
             }
             else{
-                alert(req.data.message);
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                $scope.showContentError = req.data.message;
             }
         }).catch(function(err){
             console.log(err);

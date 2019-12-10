@@ -82,8 +82,8 @@ app.controller('changePassController', function ($scope, $http) {
     $scope.errPassOld = false;
     $scope.errPassNew = false;
     $scope.errPassNew2 = false;
-    $scope.errPassNew3 = false;
-    $scope.errPassOldNot = false;
+    // $scope.errPassNew3 = false;
+    // $scope.errPassOldNot = false;
     
 
 
@@ -91,34 +91,33 @@ app.controller('changePassController', function ($scope, $http) {
         window.location.href = '/users/profile'
     }
     $scope.updatePass = function(){
-        $scope.errPassOldNot = false;
+        // $scope.errPassOldNot = false;
         if($scope.checkChange()==true){
             $scope.data.id = $scope.getCookie('user');
-            $http.post('/api/v1/user/changePass', $scope.data).then(function(res){
+            $http.post('/api/v1/user/changePass', $scope.data).then(function(res, req){
+                console.log(res.data);
                 if(res.data.status === 200){
                     alert(res.data.message);
                     window.location.href = '/users/profile';
                 }
-                if(res.data.status === 400){                    
-                    $scope.errPassOldNot = true;
+                if(res.data.status === 400){     
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                    $scope.showContentError = res.data.errorMessage;
                 }
             }).catch(function(error) {
                 console.log(error);
             })
         }
-        // window.location.href = '/users/profile'
     }
-    // $http.get('/api/v1/user/profile').then(function(res){
-    //     console.log(res.data.info);
-    //     $scope.info = res.data.info;
-    // }).catch(function(err){
-    //     console.log(err);
-    // })
+
     $scope.data = {
         passwordOld: '',
         passwordNew: '',
         passwordNew2: ''
-      }
+    }
+
     $scope.checkPassOld = function(){
         // alert($scope.data.passwordOld);
         if(!$scope.data.passwordOld){
@@ -143,17 +142,21 @@ app.controller('changePassController', function ($scope, $http) {
     $scope.checkPassNew2 = function(){
         if(!$scope.data.passwordNew2){
             $scope.errPassNew2 = true;
-            $scope.errPassNew3 = false;
+            // $scope.errPassNew3 = false;
             return false;
         }
         else if($scope.data.passwordNew2 !== $scope.data.passwordNew){
             $scope.errPassNew2 = false;
-            $scope.errPassNew3 = true;
+            // $scope.errPassNew3 = true;
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            $scope.showContentError = "Nhập lại mật khẩu không đúng.";
             return false;
         }
         else{
             $scope.errPassNew2 = false;
-            $scope.errPassNew3 = false;
+            // $scope.errPassNew3 = false;
             return true;
         }
     }

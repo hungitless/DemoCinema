@@ -5,8 +5,8 @@ app.controller('signUpController', function ($scope, $http) {
     $scope.errEmail = false;
     $scope.errPasswordAgain = false;
     $scope.errPassword = false;
-    $scope.errPasswordAgain2 = false;
-    $scope.errEmailAready = false;
+    // $scope.errPasswordAgain2 = false;
+    // $scope.errEmailAready = false;
 
     $scope.btnSignUp = true;
     $scope.btnLogin = true;
@@ -44,13 +44,14 @@ app.controller('signUpController', function ($scope, $http) {
                 {
                     window.location.href = "/";
                     $scope.setCookie('user', req.data.user._id, 1);
-                    //$scope.clearInfo();
-                    alert("Tạo Thành Công Tài Khoản: " + $scope.data.userName);
-                    //$scope.setCookie('user', req.data.user._id, 1);
+                    // alert("Tạo Thành Công Tài Khoản: " + $scope.data.userName);
                 }
                 if(req.data.status === 400)
                 {
-                    $scope.errEmailAready = true;
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                    $scope.showContentError = req.data.message;
                 }
                 
             }).catch(function (err) {
@@ -58,9 +59,9 @@ app.controller('signUpController', function ($scope, $http) {
                 console.log(err);
             });
         }
-        else {
-            alert("Tạo Thất Bại Tài Khoản");
-        }
+        // else {
+        //     alert("Tạo Thất Bại Tài Khoản");
+        // }
     }
 
     $scope.checkEmail = function () {
@@ -107,16 +108,20 @@ app.controller('signUpController', function ($scope, $http) {
         // alert($scope.password);
         if (!$scope.passwordAgain) {
             $scope.errPasswordAgain = true;
-            $scope.errPasswordAgain2 = false;
+            //$scope.errPasswordAgain2 = false;
             return false;
         }else if($scope.passwordAgain != $scope.data.password){
-            $scope.errPasswordAgain2 = true;
+            //$scope.errPasswordAgain2 = true;
             $scope.errPasswordAgain = false;
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            $scope.showContentError = "Nhập lại mật khẩu không đúng.";
             return false;
         }
         else {
             $scope.errPasswordAgain = false;
-            $scope.errPasswordAgain2 = false;
+            //$scope.errPasswordAgain2 = false;
             return true;
         }
     }
