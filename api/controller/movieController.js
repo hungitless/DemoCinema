@@ -5,6 +5,7 @@ const Movie = mongoose.model('Movie');
 async function createMovie(data) {
     let movie = new Movie();
     let a = data;
+    movie.byUser = data.byUser;
     movie.name = data.tenPhim || '';
     movie.kind = data.theLoai || '';
     movie.date = data.ngayChieu || '';
@@ -20,7 +21,7 @@ async function createMovie(data) {
     }
     return {
         status: 200,
-        message: "Tao Phim Thanh Cong",
+        message: "Tạo Phim Thành Công",
         movie: movie
        
     };                                                           
@@ -38,8 +39,17 @@ async function getDetailMovie(data){
             listMovie: listMovie
         };
 }
+
+async function deleteMovie(data){
+    let listMovie = await Movie.findOneAndDelete({"_id" : data})
+    return {
+           listMovie: listMovie
+    };
+}
+
 module.exports = {
     createMovie,
     getListMovie,
-    getDetailMovie
+    getDetailMovie,
+    deleteMovie
 }

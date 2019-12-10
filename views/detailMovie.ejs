@@ -34,6 +34,12 @@
                     <label>Thời gian phát hành: {{detail.date | date: 'dd-MM-yyyy'}}</label>
                     <br>
                     <label>Mô tả: {{detail.description}}</label>
+                    <label>Mô tả: {{detail.byUser}}</label>
+
+                    <div ng-show='moviwOfUser'>
+                      <a href="/users/editFilm"><button class="btn-pass">Chỉnh Sửa Phim</button></a>
+                      <a href="" ng-click="deleteMovie(detail._id)"><button class="btn-pass">Xoá Phim</button></a>
+                    </div>
                   </div>
                 <!-- </form> -->
               </div>

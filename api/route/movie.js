@@ -14,8 +14,9 @@ route.post('/', multipart(), async function(req, res){
         let imgUrl = '/images/' + nameImg;
         //image.mv('./public/images/' + nameImg);
         // image.mv('./public/images/' + nameImg)
-        let { tenPhim, theLoai, ngayChieu, moTa } = req.body;
+        let { tenPhim, theLoai, ngayChieu, moTa , byUser} = req.body;
         let data = {
+            byUser,
             tenPhim,
             theLoai,
             ngayChieu,
@@ -39,6 +40,15 @@ route.get('/', async function(req, res){
 route.get('/detail/:id', async function(req, res){
     try {
         let response = await movieController.getDetailMovie(req.params.id);
+        res.send(response);
+    } catch (error) {
+        console.log(error);
+    }
+});
+route.post('/delete/:id', async function(req, res){
+    try {
+        // console.log("123");
+        let response = await movieController.deleteMovie(req.params.id);
         res.send(response);
     } catch (error) {
         console.log(error);
