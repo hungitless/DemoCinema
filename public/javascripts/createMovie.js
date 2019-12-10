@@ -99,41 +99,57 @@ $scope.getCookie = function(cname){
         //$scope.data.ngayChieu = formatDateToTimeStamp($('#chossedate').val());
   
         let formData = new FormData()
+        $scope.data;
         var myFile = $('#img-film').prop('files')[0];
-        let theLoai = $('#type').val();
-        let ngayChieu = formatDateToTimeStamp($('#chossedate').val());
-        let tenPhim = $('#usr').val();
-        let moTa = $('#comment').val();
-        // console.log(myFile);
-        formData.append('img', myFile);
-        formData.append('tenPhim', tenPhim);
-        formData.append('theLoai', theLoai);
-        formData.append('ngayChieu', ngayChieu);
-        formData.append('moTa', moTa);
+        $scope.data.theLoai = $('#type').val();
+        $scope.data.ngayChieu = formatDateToTimeStamp($('#chossedate').val());
+        $scope.data.tenPhim = $('#usr').val();
+        $scope.data.moTa = $('#comment').val();
+        $scope.data.byUser = $scope.getCookie('user');
+        console.log(myFile);
+        formData.append('image', myFile);
+        formData.append('name', new Date().getTime())
+        // formData.append('tenPhim', tenPhim);
+        // formData.append('theLoai', theLoai);
+        // formData.append('ngayChieu', ngayChieu);
+        // formData.append('moTa', moTa);
+        // formData.append('byUser', byUser);
         console.log(formData);
-        $.ajax({
-        url: 'api/v1/movie',
-        data: formData,
-        type: 'POST',
-        contentType: false, 
-          processData: false, 
-          success: function (res) {
-            console.log(res.status)
-            if(res.status === 200){
-              //alert('1');
-              window.location.href = "/";
-            }
-          }
-          });
-  
-        // $http.post('api/v1/movie', $scope.data).then(function (res, req) {
-        //   alert("Tạo Thành Công");
-        //   window.location.href = '/';
-        //   $scope.retartInput();
-        //   console.log(res.data.movie);
-        // }).catch(function (err) {
-        //   console.log(err);
-        // })
+        // $.ajax({
+        // url: 'api/v1/movie',
+        // data: formData,
+        // type: 'POST',
+        // contentType: false, 
+        //   processData: false, 
+        //   success: function (res) {
+        //     console.log(res.status)
+        //     if(res.status === 200){
+        //       //alert('1');
+        //       window.location.href = "/";
+        //     }
+        //   }
+        //   });
+        setTimeout(() => {
+          $.ajax({
+            url: "https://api.imgbb.com/1/upload?key=869aee1c7e7e9fb302537b76dc2f4bc2",
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function (res) {
+              $scope.data.cover = res.data.display_url
+              $http.post('/api/v1/movie', $scope.data).then(function (res) {
+                  window.location = "/"
+              }).catch(function (error) {
+                  // var x = document.getElementById("snackbar");
+                  // x.className = "show";
+                  // setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+                  // $scope.error = error.data.errorMessage
+              })
+              }
+            })
+        }, 500);
+        
       }
     }
 

@@ -10,7 +10,7 @@ async function createMovie(data) {
     movie.kind = data.theLoai || '';
     movie.date = data.ngayChieu || '';
     movie.description = data.moTa || '';
-    movie.img = data.img;
+    movie.img = data.cover;
     movie = await movie.save();
     if (!movie) {
         console.log('fail')
