@@ -4,20 +4,30 @@ const User = mongoose.model('User');
 
 async function singUp(data) {
     try {
-        let user = new User();
-        user.name = data.userName;
-        var hashedPassword = passwordHash.generate(data.password);
-        user.password = hashedPassword;
-        user.email = data.email;
-        user = await user.save()
-        if (!user) {
-            console.log('fail')
+        let user = await User.findOne({ email: data.email });
+        if(user){
+            return {
+                status: 400,
+                message: "Email đã tồn tại."
+            }
         }
-        return {
-            user: user,
-            status: 200,
-            message: "Dang Ky Thanh Cong"
-        };
+        else{
+            let user = new User();
+            if(data.email)
+            user.name = data.userName;
+            var hashedPassword = passwordHash.generate(data.password);
+            user.password = hashedPassword;
+            user.email = data.email;
+            user = await user.save()
+            if (!user) {
+                console.log('fail')
+            }
+            return {
+                user: user,
+                status: 200,
+                message: "Đăng Ký Thành Công."
+            };
+        }
     }
     catch (error) {
         console.log(error)

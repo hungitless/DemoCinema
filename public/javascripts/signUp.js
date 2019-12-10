@@ -5,6 +5,8 @@ app.controller('signUpController', function ($scope, $http) {
     $scope.errEmail = false;
     $scope.errPasswordAgain = false;
     $scope.errPassword = false;
+    $scope.errPasswordAgain2 = false;
+    $scope.errEmailAready = false;
 
     $scope.btnSignUp = true;
     $scope.btnLogin = true;
@@ -26,22 +28,31 @@ app.controller('signUpController', function ($scope, $http) {
     }
 
     $scope.signUp = function () {
+        //alert('1');
+        $scope.errEmailAready = false;
         $scope.checkName();
         $scope.checkEmail();
         $scope.checkPassword();
         $scope.checkPasswordAgain();
+        console.log(" aa " + $scope.checkEmail());
         if ($scope.checkEmail() == true && $scope.checkName() == true && $scope.checkPassword() == true && $scope.checkPasswordAgain() == true) {
             console.log('sucess');
             $http.post('/api/v1/user', $scope.data).then(function (req, res) {
                 //console.log("id user + " + req.data.users._id);
+                //console.log(req.data)
                 if(req.data.status == 200)
                 {
                     window.location.href = "/";
                     $scope.setCookie('user', req.data.user._id, 1);
+                    //$scope.clearInfo();
+                    alert("Tạo Thành Công Tài Khoản: " + $scope.data.userName);
                     //$scope.setCookie('user', req.data.user._id, 1);
                 }
-                alert("Tạo Thành Công Tài Khoản: " + $scope.data.userName);
-                $scope.clearInfo();
+                if(req.data.status === 400)
+                {
+                    $scope.errEmailAready = true;
+                }
+                
             }).catch(function (err) {
                 //alert('123');
                 console.log(err);
@@ -55,7 +66,6 @@ app.controller('signUpController', function ($scope, $http) {
     $scope.checkEmail = function () {
         // console.log(!!$scope.myForm.email.$error.required);
         if (!!$scope.myForm.email.$error.required == true || $scope.myForm.email.$error.email == true) {
-            //console.log("a");
             $scope.errEmail = true;
             return false;
         }
@@ -77,6 +87,8 @@ app.controller('signUpController', function ($scope, $http) {
         }
     }
 
+    
+
     $scope.checkPassword = function () {
         if ($scope.data.password != null) {
             //alert('1');
@@ -91,14 +103,21 @@ app.controller('signUpController', function ($scope, $http) {
     }
 
     $scope.checkPasswordAgain = function () {
-        if ($scope.passwordAgain != null && $scope.passwordAgain == $scope.data.password) {
-            // console.log('ok roi nha');
+        // alert($scope.passwordAgain);
+        // alert($scope.password);
+        if (!$scope.passwordAgain) {
+            $scope.errPasswordAgain = true;
+            $scope.errPasswordAgain2 = false;
+            return false;
+        }else if($scope.passwordAgain != $scope.data.password){
+            $scope.errPasswordAgain2 = true;
             $scope.errPasswordAgain = false;
-            return true;
+            return false;
         }
         else {
-            $scope.errPasswordAgain = true;
-            return false;
+            $scope.errPasswordAgain = false;
+            $scope.errPasswordAgain2 = false;
+            return true;
         }
     }
 
@@ -106,7 +125,4 @@ app.controller('signUpController', function ($scope, $http) {
         $scope.data = null;
         $scope.passwordAgain = null;
     }
-    // $scope.aaa = function(){
-    //     console.log($scope.email);
-    // }
 })
