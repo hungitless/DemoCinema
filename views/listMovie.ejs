@@ -19,37 +19,41 @@
     <content>
         <div class="container">
             <div class="custom-select select-film" style="display: inline">
-                <select data-inline="true" style="float: left"> 
-                    <option value="0">Tất Cả Phim</option>
-                    <option value="1">Hành Động</option>
-                    <option value="2">Hoạt Hình</option>
-                    <option value="3">Viễn Tưởng</option>
-                    <option value="4">Tình Cảm</option>
-                    <option value="5">Kinh Dị</option>
+                <select data-inline="true" style="float: left" ng-model="selectKind" ng-change="followKind(selectKind)">  
+                    <option value="">Tất Cả Phim</option>
+                    <option value="Hành Động">Hành Động</option>
+                    <option value="Hoạt Hình">Hoạt Hình</option>
+                    <option value="Viễn Tưởng">Viễn Tưởng</option>
+                    <option value="Tình Cảm">Tình Cảm</option>
+                    <option value="Kinh Dị">Kinh Dị</option>
                 </select>
-                <select data-inline="true" style="float: left" ng-model="sortMovie1"> 
-                    <option value="0">Lọc Theo Ngày Khởi Chiếu</option>
+                <select data-inline="true" style="float: left" ng-model="sortMovie1" ng-change="changeSort(sortMovie1)"> 
+                    <option value="" disabled>Lọc Theo Ngày Khởi Chiếu</option>
                     <option value="-date">Phim Mới Nhất</option>
                     <option value="date">Phim cũ nhất</option>
                 </select>
-                <select data-inline="true" style="float: left"  ng-model="sortMovie2">  
-                    <option value="0">Lọc Theo Ngày Tạo Phim</option>
+                <select data-inline="true" style="float: left"  ng-model="sortMovie2" ng-change="changeSort(sortMovie2)">  
+                    <option value="" disabled>Lọc Theo Ngày Tạo Phim</option>
                     <option value="-createdTime">Phim Mới Nhất</option>
                     <option value="createdTime">Phim cũ nhất</option>
                 </select>
-                <select data-inline="true" style="float: left" ng-model="sortMovie3"> 
+                <select data-inline="true" style="float: left" ng-model="sortMovie3" ng-change="changeSort(sortMovie3)"> 
                     <option value="" disabled>Lọc Theo Tên</option>
                     <option value="name">A - Z</option>
                     <option value="-name">Z - A</option>
                 </select>
                 <div class="form-group box-search" style="float: right">
                     <input type="text" class="form-control" id="usr" placeholder="Tìm kiếm" ng-model=searchText>
-                    <!-- <p ng-model="giatri">{{hung}}</p> -->
+                    <!-- <p ng-model="giatri">{{sortby}}</p> -->
+                    <!-- <p ng-model="giatri">{{searchText}}</p> -->
+                    <!-- <p ng-model="giatri">{{selectKind}}</p> -->
+                    <!-- <button ng-click="test()">Hung</button> -->
+                    
                 </div>
             </div>
             <div class="show-movie" ng-init="showListMovie()">
                 <div class="row">
-                    <div class="col-md-4 item-film" ng-show='sortOne' ng-repeat="movie in listMovie | filter: searchText">
+                    <div class="col-md-4 item-film" ng-show='sortOne' ng-repeat="movie in listMovie | filter: selectKind | filter: searchText | orderBy: sortby">
                     <!-- <div class="col-md-4 item-film" ng-show="sortTwo" ng-repeat="movie in listMovie | orderBy: sortMovie3: sortMovie2: sortMovie1 | filter: searchText">
                     <div class="col-md-4 item-film" ng-show="sortThe" ng-repeat="movie in listMovie | orderBy: sortMovie2: sortMovie1: sortMovie3 | filter: searchText"> -->
                         <a href="/movie/{{movie._id}}">

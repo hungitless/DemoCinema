@@ -59,6 +59,7 @@ app.controller('listMovieController', function($scope, $http){
           }
         }
     }
+    $scope.listMovie;
     $scope.showListMovie = function(){
         $http.get('api/v1/movie').then(function(res){
             console.log(res.data.listMovie);
@@ -76,5 +77,11 @@ app.controller('listMovieController', function($scope, $http){
         $scope.btnProfile = true;
     }
     $scope.checkCookie();
+    
+    $scope.sortby = [];
+    $scope.changeSort = function(data){
+        $scope.sortby = [];
+        $scope.sortby.push(data);
+    }
 })
       
