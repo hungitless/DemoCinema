@@ -13,11 +13,11 @@ app.controller('changePassController', function ($scope, $http) {
     $scope.checkChange = function(){
         $scope.checkPassOld();
         $scope.checkPassNew();
-        $scope.checkPassNew2();
-        if($scope.checkPassOld() == false || $scope.checkPassNew() || $scope.checkPassNew2() == true){
-            return true;
-        }else{
+        //$scope.checkPassNew2();
+        if($scope.checkPassOld() == false || $scope.checkPassNew() == false || $scope.checkPassNew2() == false){
             return false;
+        }else{
+            return true;
         }
     }
 
@@ -83,6 +83,7 @@ app.controller('changePassController', function ($scope, $http) {
     $scope.errPassNew = false;
     $scope.errPassNew2 = false;
     $scope.errPassNew3 = false;
+    $scope.errPassOldNot = false;
     
 
 
@@ -90,12 +91,16 @@ app.controller('changePassController', function ($scope, $http) {
         window.location.href = '/users/profile'
     }
     $scope.updatePass = function(){
+        $scope.errPassOldNot = false;
         if($scope.checkChange()==true){
             $scope.data.id = $scope.getCookie('user');
             $http.post('/api/v1/user/changePass', $scope.data).then(function(res){
                 if(res.data.status === 200){
                     alert(res.data.message);
                     window.location.href = '/users/profile';
+                }
+                if(res.data.status === 400){                    
+                    $scope.errPassOldNot = true;
                 }
             }).catch(function(error) {
                 console.log(error);
@@ -138,9 +143,11 @@ app.controller('changePassController', function ($scope, $http) {
     $scope.checkPassNew2 = function(){
         if(!$scope.data.passwordNew2){
             $scope.errPassNew2 = true;
+            $scope.errPassNew3 = false;
             return false;
         }
         else if($scope.data.passwordNew2 !== $scope.data.passwordNew){
+            $scope.errPassNew2 = false;
             $scope.errPassNew3 = true;
             return false;
         }
