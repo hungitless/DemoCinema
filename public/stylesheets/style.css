@@ -170,9 +170,6 @@ footer{
 .form-signup-content input{
   height: 40px !important;
 }
-.content-form input{
-  /* border-color: red !important; */
-}
 .icon-login{
   margin-top: 10px;
 }
@@ -181,9 +178,6 @@ footer{
 }
 button:hover{
   cursor: pointer !important;
-}
-.name-user{
-  /* float: left; */
 }
 .btn-edit{
   background-color: #fff;
@@ -243,4 +237,7 @@ button:hover{
 @keyframes fadeout {
   from {top: 0px; opacity: 1;}
   to {top: 100px; opacity: 0;}
+}
+img{
+  height: 250px !important;
 }

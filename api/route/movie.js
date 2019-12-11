@@ -13,6 +13,16 @@ route.post('/', async function(req, res){
         console.log(error);
     }
 });
+
+route.post('/update', async function(req, res){
+    try {
+        let response = await movieController.updateMovie(req.body);
+        res.send(response);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 route.get('/', async function(req, res){
     try {
         let response = await movieController.getListMovie();

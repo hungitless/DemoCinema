@@ -18,18 +18,6 @@ router.get('/changePass', (req, res) => res.render('changePass'));
 // Edit Info User
 router.get('/edituser', (req, res) => res.render('editUser'));
 
-// Register
-// router.post('/signup', (req, res) => {
-// });
-
-// Login
-// router.post('/login', (req, res, next) => {
-//   passport.authenticate('local', {
-//     successRedirect: '/',
-//     failureRedirect: '/users/login',
-//     failureFlash: true
-//   })(req, res, next);
-// });
 
 // Logout
 router.get('/logout', (req, res) => {

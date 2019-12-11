@@ -1,6 +1,9 @@
 let app = angular.module('myApp', []);
 
-app.controller('myController', function ($scope, $http) {
+app.controller('editMovieController', function ($scope, $http) {
+
+  $scope.idMovie = $('#id').text().trim();
+
   $scope.btnSignUp = false;
   $scope.btnLogin = false;
   $scope.btnCreate = true;
@@ -14,15 +17,9 @@ app.controller('myController', function ($scope, $http) {
   $scope.errImg = false;
 
   $scope.theLoai = ['Hành Động', 'Tình Cảm', 'Viễn Tưởng', 'Chiến Tranh', 'Kinh Dị'];
-  // $scope.theloai = 'Chọn Thể Loại';
-  $scope.data = {
-    tenPhim: '',
-    theLoai: '',
-    moTa: '',
-    img: ''
-  }
 
-  
+
+
 
   $scope.delete_cookie = function(cname) {
     document.cookie = cname + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -87,62 +84,61 @@ $scope.getCookie = function(cname){
     }
   }
 
-  $scope.retartInput = function () {
-    $scope.data = {
-      tenPhim: '',
-      theLoai: '',
-      moTa: '',
-    }
-  }
-  $scope.createMovie = function(req, res) {
+  $http.get('/api/v1/movie/detail/'+ $scope.idMovie).then(function(res){
+    $scope.detail = res.data.listMovie;
+    console.log($scope.detail);
+  }).catch(function(err){
+      console.log(err);
+  })
+  $scope.updateMovie = function(req, res) {
+      // $scope.checkCreate();
       if ($scope.checkCreate() == true) {
-        //console.log('sucess');
-        //$scope.data.ngayChieu = formatDateToTimeStamp($('#chossedate').val());
-  
         let formData = new FormData()
-        $scope.data;
-        var myFile = $('#img-film').prop('files')[0];
+        $scope.data = {};
         $scope.data.theLoai = $('#type').val();
         $scope.data.ngayChieu = formatDateToTimeStamp($('#chossedate').val());
         $scope.data.tenPhim = $('#usr').val();
         $scope.data.moTa = $('#comment').val();
         $scope.data.byUser = $scope.getCookie('user');
-        console.log(myFile);
-        formData.append('image', myFile);
-        formData.append('name', new Date().getTime())
-        // formData.append('tenPhim', tenPhim);
-        // formData.append('theLoai', theLoai);
-        // formData.append('ngayChieu', ngayChieu);
-        // formData.append('moTa', moTa);
-        // formData.append('byUser', byUser);
-        console.log(formData);
-        setTimeout(() => {
-          $.ajax({
-            url: "https://api.imgbb.com/1/upload?key=869aee1c7e7e9fb302537b76dc2f4bc2",
-            data: formData,
-            processData: false,
-            contentType: false,
-            type: 'POST',
-            success: function (res) {
-              console.log("aaa" + res);
-              $scope.data.cover = res.data.display_url
-              $http.post('/api/v1/movie', $scope.data).then(function (res) {
+
+        var myFile = $('#img-film').prop('files')[0];
+        if(myFile){
+          formData.append('image', myFile);
+          formData.append('name', new Date().getTime());
+          setTimeout(() => {
+            $.ajax({
+              url: "https://api.imgbb.com/1/upload?key=869aee1c7e7e9fb302537b76dc2f4bc2",
+              data: formData,
+              processData: false,
+              contentType: false,
+              type: 'POST',
+              success: function (res) {
+                $scope.data.cover = res.data.display_url
+                $http.post('/api/v1/movie/update', $scope.data).then(function (res) {
+                  // alert('2');
                   window.location = "/"
-              }).catch(function (error) {
+                }).catch(function (error) {
                   var x = document.getElementById("snackbar");
                   x.className = "show";
                   setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
                   $scope.error = error.data.errorMessage
+                })
+                }
               })
-              }
-            })
-        }, 500);
-        
+          }, 500);
+        } 
+        else{
+          $scope.data.img = $scope.detail.img;
+          //console.log($scope.data.img);
+          $http.post('/api/v1/movie/update', $scope.data).then(function (res) {
+            window.location = "/"
+          })
+        }
       }
     }
 
   $scope.checkName = function () {
-    if (!$scope.data.tenPhim) {
+    if (!$scope.detail.name) {
       // alert('Thiếu tên phim');
       $scope.errName = true;
       return false;
@@ -154,7 +150,7 @@ $scope.getCookie = function(cname){
   }
 
   $scope.checkKind = function () {
-    if (!$scope.data.theLoai) {
+    if (!$scope.detail.kind) {
       // alert('Thiếu thể loại')
       $scope.errKind = true;
       return false;
@@ -165,7 +161,7 @@ $scope.getCookie = function(cname){
     }
   }
   $scope.checkDes = function () {
-    if (!$scope.data.moTa) {
+    if (!$scope.detail.description) {
       // alert('Thiếu mô tả')
       $scope.errDescription = true;
       return false;
@@ -177,7 +173,7 @@ $scope.getCookie = function(cname){
   }
 
   $scope.checkDate = function () {
-    if (!$scope.data.ngayChieu) {
+    if (!$scope.detail.date) {
       // alert('Thiếu mô tả')
       $scope.errDate = true;
       return false;
@@ -201,12 +197,12 @@ $scope.getCookie = function(cname){
   }
 
   $scope.checkCreate = function () {
-    $scope.checkImg();
+    // $scope.checkImg();
     $scope.checkName();
     $scope.checkDes();
     $scope.checkKind();
-    $scope.checkImg();
-    if ($scope.checkName() == true && $scope.checkDes() == true && $scope.checkKind() == true && $scope.checkImg() == true) {
+    // $scope.checkImg();
+    if ($scope.checkName() == true && $scope.checkDes() == true && $scope.checkKind() == true) {
       return true;
     }
     else {
