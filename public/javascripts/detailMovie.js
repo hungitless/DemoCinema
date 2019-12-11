@@ -71,6 +71,7 @@ app.controller('detailMovieController', function ($scope, $http) {
         var result = confirm("Bạn có chắc muốn xoá?");
         if(result == true){
             $scope.id = data;
+            console.log(data);
             $http.post('/api/v1/movie/delete/' + $scope.id).then(function(res){
                 window.location.href = '/';
             }).catch(function(error) {

@@ -69,7 +69,7 @@ async function getDetailMovie(data){
 }
 
 async function deleteMovie(data){
-    let listMovie = await Movie.findOneAndDelete({"id" : data})
+    let listMovie = await Movie.findOneAndDelete({"url" : data})
     return {
            listMovie: listMovie
     };
