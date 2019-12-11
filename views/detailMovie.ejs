@@ -36,7 +36,7 @@
                     <label>Mô tả: {{detail.description}}</label>
                     <!-- <label>Mô tả: {{detail.byUser}}</label> -->
                     <div ng-show='moviwOfUser'>
-                      <a href="/movie/edit/{{detail._id}}"><button class="btn-pass">Chỉnh Sửa Phim</button></a>
+                      <a href="/movie/edit/{{detail.url}}"><button class="btn-pass">Chỉnh Sửa Phim</button></a>
                       <a href="" ng-click="deleteMovie(detail._id)"><button class="btn-pass">Xoá Phim</button></a>
                     </div>
                   </div>

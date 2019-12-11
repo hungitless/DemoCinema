@@ -27,6 +27,10 @@ var MovieSchema = new Schema({
         default: 'https://cdnmedia.baotintuc.vn/Upload/DmtgOUlHWBO5POIHzIwr1A/files/2019/11/24/10-Frozen2.jpg'
     },
     byUser:{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    url: {
         type: String,
         default: ''
     }

@@ -30,7 +30,7 @@ async function createMovie(data) {
 
 async function updateMovie(data) {
     // let movie = new Movie();
-    let movie = await Movie.findById(data.id);
+    let movie = await Movie.findOne({"url" : data.id})
     // let a = data;
     movie.byUser = data.byUser;
     movie.name = data.tenPhim || '';
@@ -62,14 +62,14 @@ async function getListMovie() {
 };
 
 async function getDetailMovie(data){
-     let listMovie = await Movie.findOne({"_id" : data})
+     let listMovie = await Movie.findOne({"url" : data})
         return {
             listMovie: listMovie
         };
 }
 
 async function deleteMovie(data){
-    let listMovie = await Movie.findOneAndDelete({"_id" : data})
+    let listMovie = await Movie.findOneAndDelete({"id" : data})
     return {
            listMovie: listMovie
     };

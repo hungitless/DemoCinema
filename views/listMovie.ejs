@@ -56,7 +56,8 @@
                     <div class="col-md-4 item-film" ng-show='sortOne' ng-repeat="movie in listMovie | filter: selectKind | filter: searchText | orderBy: sortby">
                     <!-- <div class="col-md-4 item-film" ng-show="sortTwo" ng-repeat="movie in listMovie | orderBy: sortMovie3: sortMovie2: sortMovie1 | filter: searchText">
                     <div class="col-md-4 item-film" ng-show="sortThe" ng-repeat="movie in listMovie | orderBy: sortMovie2: sortMovie1: sortMovie3 | filter: searchText"> -->
-                        <a href="/movie/{{movie._id}}">
+                        <!-- <a href="/movie/{{movie._id}}"> -->
+                        <a href="/movie/{{movie.url}}">
                             <div class="fiml">
                                 <img src="{{movie.img}}" alt="icon phim">
                                 <div class="desription">
