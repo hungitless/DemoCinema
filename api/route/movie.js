@@ -4,6 +4,7 @@ const fileUpload = require('express-fileupload');
 var multipart = require('connect-multiparty');
 const route = express.Router();
 
+//create movie
 route.post('/', async function(req, res){
     //console.log("aa" + req.body);
     try {
@@ -14,6 +15,7 @@ route.post('/', async function(req, res){
     }
 });
 
+//update movie
 route.post('/update', async function(req, res){
     try {
         let response = await movieController.updateMovie(req.body);
@@ -48,4 +50,15 @@ route.post('/delete/:id', async function(req, res){
         console.log(error);
     }
 });
+
+// route.post('/delete/:id', async function(req, res){
+//     try {
+//         // console.log("123");
+//         let response = await movieController.deleteMovie(req.params.id);
+//         res.send(response);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// });
+
 module.exports = route;

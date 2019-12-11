@@ -6,6 +6,7 @@ var logger = require('morgan');
 require('./models/Movie');
 require('./models/User');
 var path = require('path');
+var nodemailer = require('nodemailer');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
@@ -17,6 +18,14 @@ const _ = require('lodash');
 const fileUpload = require('express-fileupload');
 
 var app = express();
+
+// var transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//          user: 'thaiquanghungit@gmail.com',
+//          pass: 'hunghieu'
+//      }
+//  });
 
 // Express session
 app.use(
@@ -125,6 +134,8 @@ app.use(fileUpload({
 
 //make uploads directory static
 app.use(express.static('uploads'));
+
+
 
 module.exports = app;
 

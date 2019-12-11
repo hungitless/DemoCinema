@@ -41,6 +41,16 @@ route.post('/edituser', async function(req, res){
         console.log(error);
     }
 });
+
+route.post('/fogotPassword', async function(req, res){
+    // console("pass");
+    try {
+        let response = await userController.fogotPass(req.body);
+        res.send(response);
+    } catch (error) {
+        console.log(error);
+    }
+});
 // oute.get('/detail/:id', async function(req, res){
 //     try {
 //         let response = await movieController.getDetailMovie(req.params.id);

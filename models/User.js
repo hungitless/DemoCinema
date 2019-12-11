@@ -20,6 +20,14 @@ const UserSchema = new mongoose.Schema({
   img: {
     type: String,
     default: "https://cdnmedia.baotintuc.vn/Upload/DmtgOUlHWBO5POIHzIwr1A/files/2019/11/24/10-Frozen2.jpg"
+  },
+  resertPasswordToken: {
+      type: String,
+      default: ''
+  },
+  resertPasswordExpires: {
+      type: Number,
+      default: Date.now
   }
 });
 

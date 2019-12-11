@@ -18,6 +18,12 @@ router.get('/changePass', (req, res) => res.render('changePass'));
 // Edit Info User
 router.get('/edituser', (req, res) => res.render('editUser'));
 
+//fogot Password
+router.get('/fogotPassword', (req, res) => res.render('fogotPass'));
+
+//Resert Password
+router.get('/resertPassword/:id', (req, res) => res.render('resertPass'));
+
 
 // Logout
 router.get('/logout', (req, res) => {

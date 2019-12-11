@@ -12,11 +12,9 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-    <!-- <script src="https//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies.js"></script> -->
-    <!-- <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-cookies.js"> -->
     
 </head>
-<body ng-controller="loginController">
+<body ng-controller="resertPassController">
     <div ng-include="'/html/header.html'"></div>
     <content>
         <div class="container form-signup">
@@ -25,17 +23,16 @@
                 <button ng-click="test()">Test</button>
             </div> -->
             <div class="form-signup-content">
-                <h2>Đăng Nhập</h2>
-                <p>Vui lòng điền đầy đủ thông tin</p>
+                <h2>Xác nhận mật khẩu mới</h2>
                 <hr class="aline">
                 <form name="myForm">
                     <div class="form-group content-form">
-                        <label>Email</label>
-                        <input type="email" class="form-control" placeholder = "Nhập địa chỉ email dạng: a@gmail.com" ng-model="data.email" name="email" required>
-                        <label>Mật Khẩu</label>
-                        <input type="password" class="form-control" placeholder="Nhập mật khẩu" ng-model="data.password" required>
-                        <!-- <input type="email" ng-model="hung"> -->
-                        <button type="input" class="btn btn-primary btn-block" ng-click="login()">Đăng Nhập</button>
+                        <label>Nhập mật khẩu mới của bạn</label>
+                        <input type="email" class="form-control" placeholder = "Nhập mật khẩu mới của bạn" ng-model="data.email1" name="email">
+                        <label>Nhập lại mật khẩu mới của bạn</label>
+                        <input type="email" class="form-control" placeholder = "Nhập lại mật khẩu mới của bạn" ng-model="data.email2" name="email">
+                        <button class="btn-pass" ng-click="backLogin()">Quay về đăng nhập</button>
+                        <button class="btn-pass" ng-click="resertPassword()">Lưu mật khẩu</button>
                     </div>
                 </form>
                 <div class="icon-login">
@@ -46,7 +43,7 @@
                     <a href="">
                         <span class="fa fa-facebook fa-2x" aria-hidden="true"></span>
                     </a>
-                    <a href="/users/fogotPassword" class="forget-pass">
+                    <a href="" class="forget-pass">
                         <p>Quên mật khẩu?</p>
                     </a>
                     <div id="snackbar">{{showContentError}}</div>
@@ -61,4 +58,4 @@
     </footer>
 </body>
 </html>
-<script src="/javascripts/login.js"></script>
+<script src="/javascripts/resertPass.js"></script>

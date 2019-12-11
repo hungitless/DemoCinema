@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const passwordHash = require('password-hash');
 const User = mongoose.model('User');
+var nodemailer = require('nodemailer');
+const crypto = require('crypto')
 
 async function singUp(data) {
     try {
@@ -93,6 +95,8 @@ async function changePass(data) {
     }
     
 };
+
+
 async function edituser(data) {
     let user = await User.findById(data.id);
     user.name = data.name;
@@ -105,10 +109,51 @@ async function edituser(data) {
     }
 };
 
+async function fogotPass(data) {
+    //let a = data.email;
+    let user = await User.findOne({ email: data.email});
+    if(!user){
+        console.log('1');
+        return {
+            status: 400,
+            errorMessage: "Email không tồn tại."
+        }
+    }
+    else{
+        const token = crypto.randomBytes(20).toString('hex');
+        user.resertPasswordToken = token;
+        user.resertPasswordExpires = Date.now() + 3600000;
+        // console.log(token);
+        console.log('2');
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                   user: 'thaiquanghungsim@gmail.com',
+                   pass: 'Thaiquanghung123'
+               }
+           });
+        const mailOptions = {
+            from: 'thaiquanghungsim@gmail.com', // sender address
+            to: data.email, // list of receivers
+            subject: 'Xác Nhận Email', // Subject line
+            html: 'Nội dung gửi: http://localhost:5002/users/resertPassword/' + token // plain text body
+        };
+        transporter.sendMail(mailOptions, function (err, info) {
+            if(err)
+              console.log(err)
+            else
+              console.log(info);
+        });
+        console.log("send email");
+
+    }
+};
+
 module.exports = {
     singUp,
     logIn,
     getProfileUser,
     changePass,
-    edituser
+    edituser,
+    fogotPass
 }

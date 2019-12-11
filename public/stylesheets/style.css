@@ -4,8 +4,9 @@ body {
 p{
   font-size: 15px;
 }
-a {
+a:hover{
   color: #00B7FF;
+  cursor: pointer;
 }
 header{
   margin-bottom: 20px;
