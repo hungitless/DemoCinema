@@ -95,12 +95,13 @@ $scope.getCookie = function(cname){
       if ($scope.checkCreate() == true) {
         let formData = new FormData()
         $scope.data = {};
+        $scope.data.id = $scope.idMovie;
         $scope.data.theLoai = $('#type').val();
         $scope.data.ngayChieu = formatDateToTimeStamp($('#chossedate').val());
         $scope.data.tenPhim = $('#usr').val();
         $scope.data.moTa = $('#comment').val();
         $scope.data.byUser = $scope.getCookie('user');
-
+        console.log($scope.data.byUser);
         var myFile = $('#img-film').prop('files')[0];
         if(myFile){
           formData.append('image', myFile);

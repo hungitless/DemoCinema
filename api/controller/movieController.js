@@ -29,7 +29,8 @@ async function createMovie(data) {
 };
 
 async function updateMovie(data) {
-    let movie = new Movie();
+    // let movie = new Movie();
+    let movie = await Movie.findById(data.id);
     // let a = data;
     movie.byUser = data.byUser;
     movie.name = data.tenPhim || '';
