@@ -24,11 +24,17 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="show-logo">
-                  <img src="/images/logo.png" alt="Hinh Demo">
+                  <img src="{{info.img}}" alt="Hinh Demo" id="img-movie">
+                </div>
+                <div class="button-file">
+                    <input type="file" name="fileUploaded" id="img-film" onchange="readURL(this);">
+                    <div class=show-error>
+                      <label ng-show="errImg">Trường này là bắt buộc.</label>
+                    </div>
                 </div>
               </div>
               <div class="col-md-8">
-                <!-- <form name="myForm" method="POST" encType="multipart/form-data"> -->
+                <form name="myForm" method="POST" encType="multipart/form-data">
                   <div class="form-group show-info">
                     <label>Tên tài khoản:</label>
                     <input type="text" class="form-control" ng-model="info.name" required>
@@ -43,11 +49,9 @@
                       <a href=""><button class="btn-pass" ng-click="editUser()">Cập nhật</button></a>
                     </div>
                   </div>
-                <!-- </form> -->
-                
+                </form>
               </div>
             </div>
-            
           </div>
         </div>
       </div>
@@ -59,3 +63,17 @@
 </html>
 </script>
 <script src="/javascripts/editUser.js"></script>
+<script>
+function readURL(input) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          $('#img-movie')
+              .attr('src', e.target.result)
+              .width(300)
+              .height(250);
+      };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+</script>

@@ -97,19 +97,52 @@ app.controller('editeUserController', function ($scope, $http) {
         id: "",
         name: ''
     }
-    $scope.editUser = function(){
-        $scope.checkName();
-        if( $scope.checkName() == true){
-            $scope.data.id = $scope.getCookie('user');
-            $scope.data.name = $scope.info.name;
-            $http.post('/api/v1/user/edituser', $scope.data).then(function(res){
-                if(res.data.status === 200){
-                    alert(res.data.message);
-                    window.location.href = '/users/profile';
+    // $scope.editUser = function(){
+    //     $scope.checkName();
+    //     if( $scope.checkName() == true){
+    //         $scope.data.id = $scope.getCookie('user');
+    //         $scope.data.name = $scope.info.name;
+    //         $http.post('/api/v1/user/edituser', $scope.data).then(function(res){
+    //             if(res.data.status === 200){
+    //                 alert(res.data.message);
+    //                 window.location.href = '/users/profile';
+    //             }
+    //         }).catch(function(error) {
+    //             console.log(error);
+    //         })
+    //     }
+    // }
+    //ham chinh
+    $scope.editUser = function(req, res) {
+        if ($scope.checkName() == true) {
+          let formData = new FormData()
+        //   $scope.data;
+          var myFile = $('#img-film').prop('files')[0];
+          $scope.data.id = $scope.getCookie('user');
+          $scope.data.name = $scope.info.name;
+          console.log(myFile);
+          formData.append('image', myFile);
+          formData.append('name', new Date().getTime())
+          //console.log(formData);
+          setTimeout(() => {
+            $.ajax({
+              url: "https://api.imgbb.com/1/upload?key=869aee1c7e7e9fb302537b76dc2f4bc2",
+              data: formData,
+              processData: false,
+              contentType: false,
+              type: 'POST',
+              success: function (res) {
+                // console.log("aaa" + res);
+                $scope.data.cover = res.data.display_url
+                $http.post('/api/v1/user/edituser', $scope.data).then(function (res) {
+                    window.location = "/users/profile"
+                }).catch(function (error) {
+                    //alert('456');
+                })
                 }
-            }).catch(function(error) {
-                console.log(error);
-            })
+              })
+          }, 500);
+          
         }
-    }
+      }
 });

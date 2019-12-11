@@ -96,6 +96,8 @@ async function changePass(data) {
 async function edituser(data) {
     let user = await User.findById(data.id);
     user.name = data.name;
+    user.img = data.cover;
+    console.log(user.img);
     await user.save();
     return{
         status: 200,

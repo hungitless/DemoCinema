@@ -96,9 +96,6 @@ $scope.getCookie = function(cname){
   }
   $scope.createMovie = function(req, res) {
       if ($scope.checkCreate() == true) {
-        //console.log('sucess');
-        //$scope.data.ngayChieu = formatDateToTimeStamp($('#chossedate').val());
-  
         let formData = new FormData()
         $scope.data;
         var myFile = $('#img-film').prop('files')[0];
@@ -110,11 +107,6 @@ $scope.getCookie = function(cname){
         console.log(myFile);
         formData.append('image', myFile);
         formData.append('name', new Date().getTime())
-        // formData.append('tenPhim', tenPhim);
-        // formData.append('theLoai', theLoai);
-        // formData.append('ngayChieu', ngayChieu);
-        // formData.append('moTa', moTa);
-        // formData.append('byUser', byUser);
         console.log(formData);
         setTimeout(() => {
           $.ajax({
